@@ -1,13 +1,189 @@
-.grid {
-    height: 500px;
-    width: 500px;
+.body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;  /*hides the scroll bar on the body*/
+
+}
+/* General Layout */
+.grid-wrapper {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+
+}
+/* heading and input field styles*/
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #057df5;
+}
+
+h1.turn-highlight {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #2c3e50;
+}
+
+h1.turn-highlight-1 {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #27ae60;
+}
+
+/* Player input fields */
+input {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    width: 200px;
+    border: 2px solid #2c3e50;
+    border-radius: 5px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #3498db;
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3498db;
+}
+
+/* Special buttons */
+button.reset {
+    background-color: #e74c3c;
+}
+
+button.reset:hover {
+    background-color: #c0392b;
+}
+
+button.rematch {
+    background-color: #f39c12;
+}
+
+button.rematch:hover {
+    background-color: #e67e22;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Grid Layout */
+.grid {
+    display: flex;
+    height: calc(100vh - 150px); /* */
+    width: 500px;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 50px;
+    gap: 10px;
+}
+/* Highlighting the current turn text */
+.turn-highlight {
+    color: white; /* Keep this if you have a dark background */
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.grid div {
+    width: 100px;
+    height: 100px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    background-color: #ffc107;
+    border: 2px solid #bdc3c7;
+    font-size: 38px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color ease-in.3s;
 }
 
-.turn-highlight {
+.grid div:hover {
+    background-color: #ff9800;
+}
+
+.grid div:active {
+    background-color: #f57c00;
+}
+
+/* New Game Option Layout */
+.new-game-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+    z-index: 10; /* Ensures buttons are on top */
+    position: relative; /* Ensures correct stacking */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Adds shadow */
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #2980b9;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+.new-game-option button {
+    margin: 10px ;
+    padding: 10px 25px;
+    background-color: #27ae60;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #3498db;
+}
+
+.new-game-option button:hover {
+    background-color: #2ecc71;
+}
+
+/* Additional styling for center alignment */
+.grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: space-between;
+    text-align: center;
+    /* max-width: 600px; */
+    /* margin-top: 50px; */
 }

@@ -1,11 +1,30 @@
 .card {
-    border: 1px solid black;
-    padding: 1rem;
+    /* border: 1px solid black; */
+    width: 120px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 120px;
+    border: 2px solid #2c3e50; /* Dark border for the cards */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    padding: 1rem;
     border-radius: 10%;
+    font-size: 36px;
     background-color: var(--yellow);
+    transition: background-color 0.3s ease, transform 0.1s ease; /*Smooth transition effects*/
+    font-weight: bold;
+}
+
+.card:hover {
+    background-color: #e67e22; /* Darker orange when hovered */
+    transform: scale(1.02); /* Slight zoom-in effect */
+}
+
+.card:active {
+    background-color: #d35400; /* Darker orange when clicked*/
+}
+
+.card svg {
+    width: 50px;  /* Make the icons fit well */
+    height: 50px;
 }
