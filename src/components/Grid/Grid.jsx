@@ -16,6 +16,7 @@ function Grid({numberOfCards}){
     const [playerO , setPlayerO] =useState('')
     const [gameStarted , setGameStarted] =useState(false)
     const [isNewGame , setIsNewGame] = useState(false) // state for new game option
+    const [rematchCount , setRematchCount] = useState(0);
 
 
     // function to handle player move 
@@ -45,18 +46,30 @@ function Grid({numberOfCards}){
     }
         // reset function
         const reset= ()=> {
-        setTurn(true)
-        setWinner(null)
-        setBoard(Array(numberOfCards).fill(""))
-        setIsNewGame(true);
+            if (winner === "Draw" && rematchCount === 1){
+                // if it is the second drwa , go to the main screen
+                setGameStarted(false)
+                setIsNewGame(false)
+                setRematchCount(0)
+            } else if (winner === "Draw"){
+                // allow  one match
+                setRematchCount(rematchCount + 1);
+            } else {
+
+                setTurn(true)
+                setWinner(null)
+                setBoard(Array(numberOfCards).fill(""))
+            }
     }
 
+    
     // start a new game with new player name 
     const startNewGame = () =>{
         setPlayerX('');
         setPlayerO('');
         setGameStarted(false);
         setIsNewGame(false);
+        setRematchCount(0)
 
     }
 
@@ -68,6 +81,7 @@ function Grid({numberOfCards}){
         setBoard(Array(numberOfCards).fill(''));
         setTurn(true);
         setIsNewGame(false);
+        setRematchCount(0);
     }
        
 
@@ -112,7 +126,7 @@ function Grid({numberOfCards}){
             {isNewGame && (
                 <div className="new-game-option">
                     <h2>Do You Want To Start a New Game</h2>
-                    <button onClick={startGame}>Enter New Player Name </button>
+                    <button onClick={startNewGame}>Enter New Player Name </button>
                     <button onClick={continueWithExistingGame}>Continue With Existing Players</button>
                 </div>
             )}
