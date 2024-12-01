@@ -43,6 +43,7 @@ function Grid({numberOfCards}){
         setPlayerX(pX)
         setPlayerO(pO)
         setGameStarted(true)
+        setRematchCount(0);
     }
         // reset function
         const reset= ()=> {
@@ -68,6 +69,8 @@ function Grid({numberOfCards}){
         setPlayerX('');
         setPlayerO('');
         setGameStarted(false);
+        setBoard(Array(numberOfCards).fill(''))
+        setTurn(true)
         setIsNewGame(false);
         setRematchCount(0)
 
@@ -78,7 +81,6 @@ function Grid({numberOfCards}){
     const continueWithExistingGame = () =>{
         setGameStarted(true);
         setWinner(null)
-        setBoard(Array(numberOfCards).fill(''));
         setTurn(true);
         setIsNewGame(false);
         setRematchCount(0);
