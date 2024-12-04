@@ -1,9 +1,45 @@
-.body {
+body {
     margin: 0;
     padding: 0;
-    overflow: hidden;  /*hides the scroll bar on the body*/
-
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #000000, #2d2d2d, #7a3333);
+    background-size: 400% 400%;
+    overflow: hidden;
+    background: url(./assets/img-h.png) no-repeat center center fixed  ;
+    background-size: cover;
+    animation: backgroundGlow 10s ease-in-out infinite;
+    color: #fff;
 }
+
+@keyframes backgroundGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+/* Smooth Horror Glow Animation */
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8); /* Red Glow */
+    }
+    25% {
+        box-shadow: 0 0 10px rgba(139, 0, 139, 0.8), 0 0 20px rgba(139, 0, 139, 0.8), 0 0 30px rgba(139, 0, 139, 0.8); /* Purple Glow */
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(0, 0, 255, 0.8), 0 0 20px rgba(0, 0, 255, 0.8), 0 0 30px rgba(0, 0, 255, 0.8); /* Blue Glow */
+    }
+    75% {
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.8); /* Cyan Glow */
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.8); /* Orange Glow */
+    }
+}
+
+/* Optional: Add glow effect to headings and text */
+h1, h2, p {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8); /* Glowing Text */
+}
+
 /* General Layout */
 .grid-wrapper {
     display: flex;
