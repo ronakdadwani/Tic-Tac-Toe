@@ -1,30 +1,88 @@
 .card {
-    /* border: 1px solid black; */
     width: 120px;
     height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #2c3e50; /* Dark border for the cards */
-    cursor: pointer; /* Pointer cursor for interactivity */
-    padding: 1rem;
-    border-radius: 10%;
-    font-size: 36px;
-    background-color: var(--yellow);
-    transition: background-color 0.3s ease, transform 0.1s ease; /*Smooth transition effects*/
-    font-weight: bold;
+    background: linear-gradient(145deg, #1b1b1b, #000);
+    border: 2px solid rgba(255, 0, 0, 0.8); /* Blood-red border */
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), 
+                0 0 30px rgba(255, 0, 0, 0.4), 
+                0 0 50px rgba(255, 0, 0, 0.3); /* Sinister glowing effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    cursor: pointer;
 }
 
 .card:hover {
-    background-color: #e67e22; /* Darker orange when hovered */
-    transform: scale(1.02); /* Slight zoom-in effect */
+    transform: scale(1.1) rotate(-2deg); /* Slight tilt for a creepy effect */
+    background: linear-gradient(145deg, #000, #330000); /* Darker red tint */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 
+                0 0 50px rgba(139, 0, 139, 0.6), 
+                0 0 75px rgba(255, 165, 0, 0.4); /* Enhanced glow */
 }
 
 .card:active {
-    background-color: #d35400; /* Darker orange when clicked*/
+    transform: scale(0.95); /* Slightly pressed effect */
+    background: linear-gradient(145deg, #330000, #000);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 
+                0 0 30px rgba(255, 0, 0, 0.5); /* Subdued glow on click */
 }
 
-.card svg {
-    width: 50px;  /* Make the icons fit well */
-    height: 50px;
+.card .icon {
+    font-size: 60px;
+    color: rgba(255, 0, 0, 0.9); /* Blood-red color for X and O */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.9), 
+                 0 0 20px rgba(255, 0, 0, 0.6), 
+                 0 0 30px rgba(255, 0, 0, 0.4); /* Glowing effect */
+}
+
+/* Add flickering horror animation to the card borders */
+@keyframes flicker {
+    0%, 100% {
+        border-color: rgba(255, 0, 0, 0.8);
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), 
+                    0 0 30px rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        border-color: rgba(139, 0, 139, 0.8); /* Purple glow */
+        box-shadow: 0 0 20px rgba(139, 0, 139, 0.6), 
+                    0 0 40px rgba(139, 0, 139, 0.4);
+    }
+}
+
+.card:hover {
+    animation: flicker 1.5s infinite alternate; /* Adds flickering glow */
+}
+
+/* Add eerie pulsating effect to the icons */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    }
+    50% {
+        transform: scale(1.2);
+        text-shadow: 0 0 25px rgba(255, 0, 0, 1);
+    }
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    }
+}
+
+.card .icon {
+    animation: pulse 2s infinite; /* Icons pulsate eerily */
+}
+
+/* Layout container for the cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }
