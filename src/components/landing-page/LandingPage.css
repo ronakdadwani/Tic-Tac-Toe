@@ -1,141 +1,111 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    /* font-family: 'Arial', sans-serif; */
-    /* background-color: #886c6c; */
-    background-color: black;
+    /* box-sizing: border-box; */
+    /* cursor: grab; */
+    font-family: 'Protest Revolution' , sans-serif;
 }
-
-
 .landing-page {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     min-height: 100vh;
-    /* background: linear-gradient(135deg , #333 , #555); */
-    font-family: 'Arial', sans-serif;
-    color: #fff;
     text-align: center;
-    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* cursor: progress; */
+    visibility: hidden; /*contect initially*/
+    opacity: 0  ;
+}
+.landing-page.ready {
+    visibility: visible; /* Show content when ready */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; /* Optional fade-in */
 }
 
-/* styling for welcome message*/
-
-.welcome-section {
+.welcome-title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content:  center; */
-    height: 100vh;
-    /* background: linear-gradient(45deg , #ff8c00, #ff0080); */
+    text-transform: uppercase;
+    font-size: 8rem;
     position: relative;
     overflow: hidden;
-    text-align: center;
-    padding: 20px;
-    background-color: #886c6c;
-}
-
-/*title styleing */
-
-.welcome-title {
-    font-size: 8rem;
+    text-shadow: 2px 2px 10px rgba(192, 45, 45, 0.859);
     font-weight: bold;
-    margin-bottom: 20px;
-    /* color: #ffdd00; */
-    color: white;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    animation: fadeIn 2s ease-out;
+    color: rgb(217, 199, 199);
+    letter-spacing: 10px;
+    font-family: 'Protest Revolution' , sans-serif;
     cursor: pointer;
-    margin-bottom: 20px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    font-family: protest revolution;
+    margin-bottom: 80px;
+    
 }
 
-/* message paragraph styling */
 
-.welcome-message {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: #fff;
-    font-family: monospace;
-    margin-bottom: 20px;
-    opacity: 0.9;
 
-}
-
-/* styling for player input section */ 
 .player-input-section {
-    background-color: rgba(0,0,0,0.7);
-    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(106, 106, 106, 0.203);
+    padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     max-width: 500px;
     width: 100%;
-    margin: 0 auto;
+    margin-bottom: 60px;
+    cursor: grab;
+    /* margin: 0 auto; */
     text-align: center;
     color: #fff;
+
+    
 }
 
-/* Heading style for the section */ 
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: text;
+}
 
+input {
+    padding: 10px;
+    margin: 5px 0;
+    width: 200px;
+    font-size: 1rem;
+    cursor: text;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #c4cb42;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    /* background-color: #45a049; */
+    background-color: #ccc7a76c;
+    color: white;
+    
+}
 .player-input-section h2 {
-    font-size: 2rem;
-    color: #fff;
+    font-size: 45px;
+    color: black;
     margin-bottom: 30px;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 2px;
+    text-shadow: 4px 4px 29px rgba(223, 223, 223, 0.88);
 
 }
 
-/* styling for input fields  */ 
-
-.player-input-section input{
-    width:100%;
-    padding: 12px;
-    margin: 10px 0;
-    /* border: 2px solid #00aaff; */
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: rgba(255,255,255,0.1);
-    color: #fff;
-    /* transition: border-color 0.3s ease; */
+.player-input-section h2:hover{
+    color: rgb(0, 0, 0);
+    text-shadow: 4px 1px 7px rgba(208,16,16,0.9);    font-weight: bold;
 }
-
-.player-input-section input::placeholder{
-    color: #bbb;
-
-}
-
-
-.player-input-section button:hover {
-    /* background-color: #ceb41fea;
-    color: rgb(28, 27, 27);
-    font-weight: bold;
-    font-size: x-large; */
-
-}
-
-/* .player-input-section button:active{
-    transform: scale(5s);
-} */
-
-.player-input-section button {
-        color: black;
-        background-color: #98860d;
-        font-size: larger;
-        font-weight: 500;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-.welcome-section, .player-input-section {
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  
-  .welcome-section.show, .player-input-section.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
