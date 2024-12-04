@@ -28,10 +28,10 @@ h1.turn-highlight {
     color: #2c3e50;
 }
 
-h1.turn-highlight-1 {
-    font-size: 24px;
+h1.turn-highlight {
+    font-size: 5rem;
     margin: 20px 0;
-    color: #27ae60;
+    color: #d5dfd9;
 }
 
 /* Player input fields */
