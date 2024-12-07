@@ -14,7 +14,7 @@ const backgroundMusic = ({src}) =>{
     },[]);
 
     return (
-        <audio src={audioRef} loop >
+        <audio ref={audioRef} loop >
             <source src={src} type='audio/mpeg'/>
             Your browser does not support the auido element..
         </audio>
