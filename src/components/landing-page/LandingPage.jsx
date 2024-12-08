@@ -7,20 +7,40 @@ function LandingPage({ startGame }) {
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
     const audioRef = useRef(null)
+    const keySoundRef = useRef(null)
 
     useEffect(()=>{
         // simulates css load or dom rediness
         setIsReady(true)
+        const playBackgroundMusic = () =>  {
 
-        if (audioRef.current){
-            audioRef.current.volume = 0.2;
-            audioRef.current.play().catch(()=>{
-                console.log("user interaction required to play the music");
-                
-            })
+            if (audioRef.current){
+                audioRef.current.volume = 0.3;
+                audio.current.muted = true;
+                audioRef.current.play().catch(()=>{
+                    console.log("user interaction required to play the music");
+                    
+                })
+            }
+            
         }
+        },[])
 
-    },[])
+    const unMutedAudio = ()=>{
+        if(audioRef.current){
+            audioRef.current.muted = false
+            audioRef.current.play();
+        }
+    }
+
+    const handleKeySound = (event)=>{
+        if(!event.repeat){
+            console.log(`key pressed ${event.keySoundRef}`);
+            
+            keySoundRef.current.currentTime = 0;
+            keySoundRef.current.play();
+        }
+    }
 
     const playMusic = () =>{
         if(audioRef.current){
@@ -42,6 +62,11 @@ function LandingPage({ startGame }) {
                 <source src="./Assets/music/sound1.mp3" type="audio/mpeg" />
                 Your browser dows not support the audio element.
             </audio>
+            {/**key sound */}
+            <audio ref={keySoundRef}>
+                <source src="./Assets/music/sound2.mp3" />
+                Your browser does not support the audio element..
+            </audio>
             <button onClick={playMusic}>
                 Play Music
             </button>
@@ -57,12 +82,14 @@ function LandingPage({ startGame }) {
                         placeholder="Player X Name"
                         value={playerX}
                         onChange={(e) => setPlayerX(e.target.value)}
+                        onKeyDown={handleKeySound}
                     />
                     <input
                         type="text"
                         placeholder="Player O Name"
                         value={playerO}
                         onChange={(e) => setPlayerO(e.target.value)}
+                        onKeyDown={handleKeySound}
                     />
                 </div>
                 <button onClick={handleStartGame}>Start Game</button>
