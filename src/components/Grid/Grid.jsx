@@ -2,7 +2,7 @@ import { useState } from "react";
 import Card from '../card/card'
 import './Grid.css';
 import isWinner from "../helpers/checkWinner";
-import LandingPage from "../landing-page/landingpage";
+import LandingPage from "../landing-page/LandingPage";
 
 
 
