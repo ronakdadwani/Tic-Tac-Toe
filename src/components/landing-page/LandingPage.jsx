@@ -6,23 +6,39 @@ function LandingPage({ startGame }) {
     const [isReady ,setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
-    const audioRef = useRef(null)
-    const keySoundRef = useRef(null)
-
+    const audioRef = useRef(null) //    background music 
+    const keySoundRef = useRef(null) // keppad soundd
+ 
     useEffect(()=>{
         // simulates css load or dom rediness
         setIsReady(true)
+
         const playBackgroundMusic = () =>  {
 
             if (audioRef.current){
-                audioRef.current.volume = 0.3;
-                audio.current.muted = true;
+                audioRef.current.volume = 0.9;
+                audioRef.current.muted = true;
                 audioRef.current.play().catch(()=>{
-                    console.log("user interaction required to play the music");
+                    console.log("audio blocked. will muted on user interaction");
                     
                 })
             }
             
+        }
+        playBackgroundMusic();
+        const unMuteOnInteracction = ()=>{
+            if(audioRef.current){
+                audioRef.current.muted = false;
+                audioRef.current.play();
+            }
+
+            window.addEventListener('keydown' , unMuteOnInteracction)
+        }
+         
+        window.addEventListener('keydown' , unMuteOnInteracction);
+
+        return ()=>{
+            window.removeEventListener('keydown' , unMuteOnInteracction)
         }
         },[])
 
