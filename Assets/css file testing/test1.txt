@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #000000, #2d2d2d, #7a3333);
+    background-size: 400% 400%;
+    overflow: hidden;
+    animation: backgroundGlow 10s ease-in-out infinite;
+    color: #fff;
+}
+
+@keyframes backgroundGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
