@@ -6,63 +6,63 @@ function LandingPage({ startGame }) {
     const [isReady ,setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
+    const [isTyping , setIsTyping] = useState(false) // track typing status
     const audioRef = useRef(null) //    background music 
     const keySoundRef = useRef(null) // keppad soundd
- 
+    const [inputActive , setInputActive] = useState(false) // track input click 
     useEffect(()=>{
         // simulates css load or dom rediness
         setIsReady(true)
 
-        const playBackgroundMusic = () =>  {
-
-            if (audioRef.current){
-                audioRef.current.volume = 0.9;
-                audioRef.current.muted = true;
-                audioRef.current.play().catch(()=>{
-                    console.log("audio blocked. will muted on user interaction");
-                    
-                })
-            }
-            
-        }
-        playBackgroundMusic();
-        const unMuteOnInteracction = ()=>{
+        
+        const enableAudioOnMouse = ()=>{
             if(audioRef.current){
                 audioRef.current.muted = false;
-                audioRef.current.play();
+                audioRef.current.volume = 0.3
+                audioRef.current.play().catch((err1)=>{
+                    console.log('Audi playback error' , err1);
+                    
+                });
             }
 
-            window.addEventListener('keydown' , unMuteOnInteracction)
+            window.removeEventListener('mousemove' , enableAudioOnMouse)
         }
          
-        window.addEventListener('keydown' , unMuteOnInteracction);
+        window.addEventListener('mousemove' , enableAudioOnMouse);
 
         return ()=>{
-            window.removeEventListener('keydown' , unMuteOnInteracction)
+            window.removeEventListener('mousemove' , enableAudioOnMouse)
         }
         },[])
 
-    const unMutedAudio = ()=>{
-        if(audioRef.current){
-            audioRef.current.muted = false
-            audioRef.current.play();
-        }
-    }
-
     const handleKeySound = (event)=>{
-        if(!event.repeat){
+        if(inputActive &&!event.repeat){
+           if(keySoundRef.current){
             console.log(`key pressed ${event.keySoundRef}`);
-            
             keySoundRef.current.currentTime = 0;
             keySoundRef.current.play();
+           }
+        }
+
+    };
+     
+    const handleInputCLick = () =>{
+        setInputActive(true) // input field is active
+    }
+    
+    const handleTyping = (isTyping) =>{
+        setIsTyping(isTyping); // update typing status
+        if(audioRef.current){
+            if(isTyping){
+                audioRef.current.pause(); // pause music while typing
+
+            } else {
+                audioRef.current.play(); /// resume music when not typing
+            }
         }
     }
 
-    const playMusic = () =>{
-        if(audioRef.current){
-            audioRef.current.play()
-        }
-    }
+    
     const handleStartGame = () => {
         if (playerX && playerO) {
             startGame(playerX, playerO);
@@ -73,19 +73,25 @@ function LandingPage({ startGame }) {
 
     return (
         <div className={`landing-page ${isReady ? "ready" : ''}`}>
+
+
             {/** background music */}
             <audio ref={audioRef} loop>
                 <source src="./Assets/music/sound1.mp3" type="audio/mpeg" />
                 Your browser dows not support the audio element.
             </audio>
-            {/**key sound */}
+
+
+            {/**keypad sound */}
             <audio ref={keySoundRef}>
                 <source src="./Assets/music/sound2.mp3" />
                 Your browser does not support the audio element..
             </audio>
-            <button onClick={playMusic}>
-                Play Music
-            </button>
+
+            
+            
+
+
             {/* Game Title */}
             <h1 className="welcome-title">Tic Tac Toe</h1>
             
@@ -98,12 +104,25 @@ function LandingPage({ startGame }) {
                         placeholder="Player X Name"
                         value={playerX}
                         onChange={(e) => setPlayerX(e.target.value)}
+                        onClick={handleInputCLick} // acitvate key sound
+                        onFocus={() => handleTyping(true)} // typing start
+                        onBlur={()=>{
+                            handleTyping(false)
+                            setInputActive(false); // deactivate key sound
+                        }}
+
                         onKeyDown={handleKeySound}
+
                     />
                     <input
                         type="text"
                         placeholder="Player O Name"
                         value={playerO}
+                        onClick={handleInputCLick}// activate key sound
+                        onFocus={()=>{
+                            handleTyping(false)
+                            setInputActive(false)
+                        }}
                         onChange={(e) => setPlayerO(e.target.value)}
                         onKeyDown={handleKeySound}
                     />
