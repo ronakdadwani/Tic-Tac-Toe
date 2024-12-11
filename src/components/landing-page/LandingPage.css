@@ -23,7 +23,7 @@
     transition: opacity 0.3s ease-in-out; /* Optional fade-in */
 }
 
-.welcome-title {
+/* .welcome-title {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,9 +45,151 @@
     color: antiquewhite;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.859);
 
-}
+} */
+@keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes moveAndBlink {
+    0% {
+      opacity: 1;
+      top: 5%; /* Start at the top */
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+    }
+    20% {
+      opacity: 1;
+      top: 8%; /* Stay within the top part of the screen */
+      left: 45%;
+      transform: translateX(-50%) rotate(10deg);
+    }
+    40% {
+      opacity: 1;
+      top: 10%; /* Slight vertical movement within the top */
+      left: 55%;
+      transform: translateX(-50%) rotate(-10deg);
+    }
+    60% {
+      opacity: 1;
+      top: 8%; /* Stay within the top */
+      left: 50%;
+      transform: translateX(-50%) rotate(5deg);
+    }
+    80% {
+      opacity: 1;
+      top: 6%; /* Return slightly higher within the top */
+      left: 45%;
+      transform: translateX(-50%) rotate(-5deg);
+    }
+    100% {
+      opacity: 1;
+      top: 5%; /* Return to the top */
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+    }
+  }
+  
+  .welcome-title {
+    font-size: 6rem;
+    font-family: 'Creepster', cursive; /* Creepy font */
+    color: white; /* White text color for high contrast */
+    position: absolute;
+    animation: moveAndBlink 6s ease-in-out infinite, blink 2s ease-in-out infinite; /* Smooth, continuous loop */
+    text-shadow: 0 0 15px rgba(255, 0, 0, 1), 0 0 25px rgba(255, 0, 0, 0.7), 0 0 35px rgba(255, 0, 0, 0.5); /* Glowing red */
+    letter-spacing: 3px;
+    font-weight: bold;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    top: 5%; /* Start at the top of the screen */
+    left: 50%;
+    transform: translateX(-50%); /* Centered horizontally */
+    border-radius: 10px;
+    max-width: 90%; /* Prevent text from stretching too wide */
+    line-height: 1.2;
+  }
+  
+  .welcome-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 10px;
+  }
+  
+  
+  .player-input-section {
+    color: #080707; /* Bright red text */
+    font-family: 'Creepster', cursive; /* Creepy font for added effect */
+    padding: 30px;
+    border-radius: 15px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+    animation: glowPulse 2s infinite alternate; /* Pulsing glow effect */
+  }
+  
+  @keyframes glowPulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+    }
+    100% {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+    }
+  }
+  
+  .player-input-section h2 {
+    font-size: 2.5rem;
+    color: #0d0c0c; /* Slightly lighter red for the heading */
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  
+  .player-input-section button {
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 1.2rem;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(224, 40, 40, 0.8);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 20px;
+  }
+  
+  .player-input-section button:hover {
+    background-color: #ff3333;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
+  
+  .player-input-section button:active {
+    transform: scale(0.98);
+  }
+  
 
-
+/* 
 
 .player-input-section {
     display: flex;
@@ -62,59 +204,12 @@
     margin-bottom: 60px;
     cursor: grab;
     /* margin: 0 auto; */
-    text-align: center;
-    color: #fff;
+   
 
     
-}
+/* } */
 
-.input-fields {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    cursor: text;
-}
 
-input {
-    padding: 10px;
-    margin: 5px 0;
-    width: 200px;
-    font-size: 1rem;
-    cursor: text;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #c4cb42;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    /* background-color: #45a049; */
-    background-color: #ccc7a76c;
-    color: white;
-    
-}
-.player-input-section h2 {
-    font-size: 45px;
-    color: black;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 4px 4px 29px rgba(223, 223, 223, 0.88);
-
-}
-
-.player-input-section h2:hover{
-    color: rgb(0, 0, 0);
-    text-shadow: 4px 1px 7px rgba(208,16,16,0.9);    font-weight: bold;
-}
 
 .click-to-play {
     position: fixed;
