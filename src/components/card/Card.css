@@ -20,7 +20,7 @@
     background: linear-gradient(145deg, #000, #330000); /* Darker red tint */
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 
                 0 0 50px rgba(139, 0, 139, 0.6), 
-                0 0 75px rgba(255, 165, 0, 0.4); /* Enhanced glow */
+                0 0 75px rgba(115, 192, 49, 0.777); /* Enhanced glow */
 }
 
 .card:active {
