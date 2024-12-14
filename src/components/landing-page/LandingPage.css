@@ -136,18 +136,6 @@
     border-radius: 10px;
   }
   
-  
-  .player-input-section {
-    color: #080707; /* Bright red text */
-    font-family: 'Creepster', cursive; /* Creepy font for added effect */
-    padding: 30px;
-    border-radius: 15px;
-    margin: 50px auto;
-    text-align: center;
-    position: relative;
-    animation: glowPulse 2s infinite alternate; /* Pulsing glow effect */
-  }
-  
   @keyframes glowPulse {
     0% {
       transform: scale(1);
@@ -167,21 +155,22 @@
   }
   
   .player-input-section button {
-    background-color: #ff0000;
+    background-color: #000000;
     color: #fff;
     font-size: 1.2rem;
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(224, 40, 40, 0.8);
+    box-shadow: 0 0 15px rgba(14, 232, 108, 0.8);
     cursor: pointer;
     transition: 0.3s ease-in-out;
     margin-top: 20px;
   }
   
   .player-input-section button:hover {
-    background-color: #ff3333;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+    background-color: #8e8787;
+    box-shadow: 0 0 20px rgb(6, 6, 6);
+    color: black;
   }
   
   .player-input-section button:active {
@@ -189,7 +178,7 @@
   }
   
 
-/* 
+
 
 .player-input-section {
     display: flex;
@@ -197,17 +186,20 @@
     align-items: center;
     background-color: rgba(106, 106, 106, 0.203);
     padding: 30px;
+    margin: 25px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     max-width: 500px;
     width: 100%;
     margin-bottom: 60px;
     cursor: grab;
+    /* animation: glowPulse 2s infinite alternate; */
     /* margin: 0 auto; */
-   
-
     
-/* } */
+}
+
+
+
 
 
 
