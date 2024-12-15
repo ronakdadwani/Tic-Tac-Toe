@@ -5,6 +5,7 @@
     /* cursor: grab; */
     font-family: 'Protest Revolution' , sans-serif;
 }
+
 .landing-page {
     display: flex;
     justify-content: center;
@@ -64,44 +65,7 @@
     }
   }
   
-  @keyframes moveAndBlink {
-    0% {
-      opacity: 1;
-      top: 5%; /* Start at the top */
-      left: 50%;
-      transform: translateX(-50%) rotate(0deg);
-    }
-    20% {
-      opacity: 1;
-      top: 8%; /* Stay within the top part of the screen */
-      left: 45%;
-      transform: translateX(-50%) rotate(10deg);
-    }
-    40% {
-      opacity: 1;
-      top: 10%; /* Slight vertical movement within the top */
-      left: 55%;
-      transform: translateX(-50%) rotate(-10deg);
-    }
-    60% {
-      opacity: 1;
-      top: 8%; /* Stay within the top */
-      left: 50%;
-      transform: translateX(-50%) rotate(5deg);
-    }
-    80% {
-      opacity: 1;
-      top: 6%; /* Return slightly higher within the top */
-      left: 45%;
-      transform: translateX(-50%) rotate(-5deg);
-    }
-    100% {
-      opacity: 1;
-      top: 5%; /* Return to the top */
-      left: 50%;
-      transform: translateX(-50%) rotate(0deg);
-    }
-  }
+
   
   .welcome-title {
     font-size: 6rem;
@@ -179,26 +143,43 @@
   
 
 
-
-.player-input-section {
+  .player-input-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(106, 106, 106, 0.203);
+    background-color: rgba(20, 20, 20, 0.9); /* Dark and eerie background */
     padding: 30px;
     margin: 25px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     max-width: 500px;
     width: 100%;
     margin-bottom: 60px;
     cursor: grab;
-    /* animation: glowPulse 2s infinite alternate; */
-    /* margin: 0 auto; */
-    
+    position: relative;
+    z-index: 1;
+    border: 2px solid transparent;
+    box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.6); /* Initial red glow */
+    animation: horrorBorderAnimation 3s infinite alternate;
 }
 
-
+/* Horror Border Animation */
+@keyframes horrorBorderAnimation {
+    0% {
+        box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.8), /* Red glow */
+                    0 0 20px 5px rgba(139, 0, 139, 0.6), /* Purple glow */
+                    0 0 30px 10px rgba(0, 0, 255, 0.4); /* Blue glow */
+    }
+    50% {
+        box-shadow: 0 0 15px 3px rgba(0, 255, 0, 0.7), /* Green glow */
+                    0 0 25px 7px rgba(0, 0, 255, 0.5), /* Blue glow */
+                    0 0 35px 15px rgba(255, 165, 0, 0.3); /* Orange glow */
+    }
+    100% {
+        box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.6), /* Red glow */
+                    0 0 30px 10px rgba(255, 255, 0, 0.4), /* Yellow glow */
+                    0 0 40px 20px rgba(255, 255, 255, 0.2); /* White glow */
+    }
+}
 
 
 
