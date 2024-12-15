@@ -9,7 +9,5 @@ function Icon({name}) {
     } else {
         return <FaPen/>
     }
-
 }
-
 export default Icon;
