@@ -37,7 +37,7 @@ body::before {
         box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8); /* Red Glow */
     }
     25% {
-        box-shadow: 0 0 10px rgba(139, 0, 139, 0.8), 0 0 20px rgba(139, 0, 139, 0.8), 0 0 30px rgba(139, 0, 139, 0.8); /* Purple Glow */
+        box-shadow: 0 0 10px rgba(10, 176, 46, 0.8), 0 0 20px rgba(139, 0, 139, 0.8), 0 0 30px rgba(139, 0, 139, 0.8); /* Purple Glow */
     }
     50% {
         box-shadow: 0 0 10px rgba(0, 0, 255, 0.8), 0 0 20px rgba(0, 0, 255, 0.8), 0 0 30px rgba(0, 0, 255, 0.8); /* Blue Glow */
