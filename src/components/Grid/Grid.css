@@ -4,12 +4,25 @@ body {
     font-family: 'Arial', sans-serif;
     background: url(./assets/img-h.png) no-repeat center center fixed;
     background-size: cover;
-    animation: backgroundGlow 5s ease-in-out infinite;
+    animation: moveBackground 10s linear infinite; /* Animation added here */
     color: #fff;
     overflow: hidden;
     position: relative; /* To position the pseudo-element correctly */
 }
 
+
+/* Keyframes for moving the background */
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 50%; /* Start at the left */
+    }
+    50% {
+        background-position: 100% 50%; /* Move to the right */
+    }
+    100% {
+        background-position: 0% 50%; /* Return to the left */
+    }
+}
 /* Add the glowing effect using a pseudo-element */
 body::before {
     content: '';
@@ -18,39 +31,13 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+    background: radial-gradient(circle, rgba(246, 161, 161, 0.2), rgba(0, 0, 0, 0.8));
     z-index: 1; /* Ensure this is above the background but below content */
     pointer-events: none; /* Prevent interaction with the pseudo-element */
-    animation: glowEffect 5s ease-in-out infinite;
+    animation: glowEffect 6s ease-in-out infinite;
 }
 
-/* Keyframes for background movement */
-@keyframes backgroundGlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
-/* Smooth Horror Glow Animation */
-@keyframes glowEffect {
-    0% {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8); /* Red Glow */
-    }
-    25% {
-        box-shadow: 0 0 10px rgba(10, 176, 46, 0.8), 0 0 20px rgba(139, 0, 139, 0.8), 0 0 30px rgba(139, 0, 139, 0.8); /* Purple Glow */
-    }
-    50% {
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.8), 0 0 20px rgba(0, 0, 255, 0.8), 0 0 30px rgba(0, 0, 255, 0.8); /* Blue Glow */
-    }
-    75% {
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.8); /* Cyan Glow */
-    }
-    100% {
-        box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.8); /* Orange Glow */
-    }
-}
-
-/* Ensure content appears above the glow effect */
 h1, h2, p, .grid-wrapper {
     position: relative;
     z-index: 2;
@@ -68,11 +55,40 @@ h1, h2, p, .grid-wrapper {
 
 }
 /* heading and input field styles*/
+
 h2 {
-    font-size: 24px;
+    font-size: 3rem;
+    /* font-family: 'Creepster', cursive; Creepy font */
+    color: rgb(159, 127, 144); /* White text color for high contrast */
     margin-bottom: 20px;
-    color: #057df5;
+    letter-spacing: 1px;
+    width: 100%;
+    height: 100%;
+    line-height: 1.2;
+    text-align: center;
+    animation: blink 3s ease-in-out infinite; /* Smooth, continuous loop */
 }
+
+h2::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 10px;
+}
+@keyframes glowPulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 25px rgba(237, 12, 12, 0.6);
+    }
+    100% {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+    }
+  }
 
 h1.turn-highlight {
     font-size: 24px;
@@ -104,15 +120,16 @@ input:focus {
 
 /* Buttons */
 button {
-    padding: 12px 20px;
-    font-size: 16px;
-    background-color: #2980b9;
-    color: white;
+    background-color: #000000;
+    color: #fff;
+    font-size: 1.2rem;
     border: none;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(14, 232, 108, 0.8);
     cursor: pointer;
-    margin: 10px;
-    transition: background-color 0.3s ease;
+    transition: 0.3s ease-in-out;
+    margin-top: 20px;
 }
 
 button:hover {
