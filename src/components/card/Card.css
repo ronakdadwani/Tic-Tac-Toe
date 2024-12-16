@@ -31,7 +31,7 @@
 }
 
 .card .icon {
-    font-size: 60px;
+    font-size: 70px;
     color: rgba(255, 0, 0, 0.9); /* Blood-red color for X and O */
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.9), 
                  0 0 20px rgba(255, 0, 0, 0.6), 
