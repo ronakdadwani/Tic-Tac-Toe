@@ -9,141 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&family=Yuji+Mai&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 
     <title>Tic Tac Toe</title>
   </head>
   <body>
     <div id="root"></div>
-    <div class="fog"></div>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background-color: #1c1c1c; /* Dark background for contrast */
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
-
-        /* Vapor Container (Cover the whole screen) */
-        .vapor-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        /* Vapor Circles */
-        .vapor {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3); /* Vapor color */
-            animation: vaporAnimation 2s ease-in-out infinite, fadeEffect 6s ease-in-out infinite;
-        }
-
-        /* Small Vapor Circles */
-        .vapor.small {
-            width: 100px;
-            height: 100px;
-            animation-duration: 4s; /* Faster animation */
-        }
-
-        /* Large Vapor Circles */
-        .vapor.large {
-            width: 300px;
-            height: 300px;
-            animation-duration: 8s; /* Slower animation */
-        }
-
-        /* Randomize the positions for the vapor circles */
-        .vapor:nth-child(1) {
-            top: 5%;
-            left: 5%;
-        }
-        .vapor:nth-child(2) {
-            top: 25%;
-            left: 85%;
-        }
-        .vapor:nth-child(3) {
-            top: 45%;
-            left: 50%;
-        }
-        .vapor:nth-child(4) {
-            top: 60%;
-            left: 10%;
-        }
-        .vapor:nth-child(5) {
-            top: 80%;
-            left: 60%;
-        }
-        .vapor:nth-child(6) {
-            top: 30%;
-            left: 70%;
-        }
-
-        /* Animation to move the vapor */
-        @keyframes vaporAnimation {
-            0% {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0.4;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0.4;
-            }
-        }
-
-        /* Fade Effect */
-        @keyframes fadeEffect {
-            0% {
-                opacity: 0.4;
-            }
-            25% {
-                opacity: 0.6;
-            }
-            50% {
-                opacity: 0.4;
-            }
-            75% {
-                opacity: 0.6;
-            }
-            100% {
-                opacity: 0.4;
-            }
-        }
-
-        /* Content Layer */
-        .content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3rem;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
-        }
-
-        p {
-            font-size: 1.5rem;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
-    </style>
-
 
 
     <!-- Vapor Effect Layer (Full-screen) -->
@@ -161,11 +32,6 @@
         <div class="vapor"></div>
     </div>
 
-    <!-- Content Layer -->
-    <div class="content">
-        <h1>Fuel Vapor Effect</h1>
-        <p>Witness the fuel vapor rising from the factory.</p>
-    </div>
 
 
 
