@@ -59,7 +59,7 @@ h1, h2, p, .grid-wrapper {
 h2 {
     font-size: 3rem;
     /* font-family: 'Creepster', cursive; Creepy font */
-    color: rgb(159, 127, 144); /* White text color for high contrast */
+    color: rgb(217, 201, 201); /* White text color for high contrast */
     margin-bottom: 20px;
     letter-spacing: 1px;
     width: 100%;
@@ -90,73 +90,24 @@ h2::before{
     }
   }
 
-h1.turn-highlight {
-    font-size: 24px;
-    margin: 20px 0;
-    color: #2c3e50;
-}
-
-h1.turn-highlight {
-    font-size: 5rem;
-    margin: 20px 0;
-    color: #d5dfd9;
-}
-
 /* Player input fields */
 input {
     display: flex;
     padding: 10px;
+    height: 20%;
     margin: 10px 0;
     font-size: 16px;
     width: 200px;
     border: 2px solid #2c3e50;
-    border-radius: 5px;
+    border-radius: 20px;
     outline: none;
 }
 
 input:focus {
-    border-color: #3498db;
+    border-color: #11ff00;
+    /* border: 2px solid #11ff00; */
 }
 
-/* Buttons */
-button {
-    background-color: #000000;
-    color: #fff;
-    font-size: 1.2rem;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(14, 232, 108, 0.8);
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #3498db;
-}
-
-/* Special buttons */
-button.reset {
-    background-color: #e74c3c;
-}
-
-button.reset:hover {
-    background-color: #c0392b;
-}
-
-button.rematch {
-    background-color: #f39c12;
-}
-
-button.rematch:hover {
-    background-color: #e67e22;
-}
-
-button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-}
 
 /* Grid Layout */
 .grid {
@@ -213,17 +164,7 @@ button:disabled {
     margin-bottom: 10px;
 }
 
-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-    transition: background-color 0.3s ease;
-}
+
 
 
 .new-game-option button {
