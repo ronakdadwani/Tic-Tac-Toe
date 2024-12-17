@@ -48,15 +48,17 @@ function Grid({numberOfCards}){
         // reset function
         const reset= ()=> {
             if (winner === "Draw" && rematchCount === 1){
-                // if it is the second drwa , go to the main screen
+                // after second draw , reset t main screen
                 setGameStarted(false)
                 setIsNewGame(false)
-                setRematchCount(0)
-            } else if (winner === "Draw"){
-                // allow  one match
-                setRematchCount(rematchCount + 1);
-            } else {
-
+                setRematchCount(0); // increment rematch count
+            } else if(winner === "Draw"){
+                setTurn(true)
+                setWinner(null)
+                setBoard(Array(numberOfCards).fill(''))
+                setRematchCount(rematchCount + 1 )
+            } 
+            else {
                 setTurn(true)
                 setWinner(null)
                 setBoard(Array(numberOfCards).fill(""))
@@ -78,14 +80,7 @@ function Grid({numberOfCards}){
 
     // continue with the existing player 
 
-    const continueWithExistingGame = () =>{
-        setGameStarted(true);
-        setWinner(null)
-        setTurn(true);
-        setIsNewGame(false);
-        setRematchCount(0);
-    }
-       
+   
 
     return (
         <div className="grid-wrapper">
@@ -100,14 +95,16 @@ function Grid({numberOfCards}){
                             </h1>
                             <button className="reset" onClick={reset}>Start New Game</button>
                             {winner === "Draw" && (
-                                <button className="rematch" onClick={reset}>Rematch</button>
+                                <button className="rematch" onClick={reset}>
+                                    {rematchCount === 1 ? "Final Match - End Game" : "Rematch"}
+                                </button>
                             )}
                         </>
                     )}
 
                     {!winner && (
                         <h1 className="turn-highlight">
-                            Current Turn: {turn ? playerO : playerX}
+                            Current Turn: <br />{turn ? playerO : playerX}
                         </h1>
                     )}
 
@@ -124,14 +121,6 @@ function Grid({numberOfCards}){
                     </div>
                 </>
             )} 
-
-            {isNewGame && (
-                <div className="new-game-option">
-                    <h2>Do You Want To Start a New Game</h2>
-                    <button onClick={startNewGame}>Enter New Player Name </button>
-                    <button onClick={continueWithExistingGame}>Continue With Existing Players</button>
-                </div>
-            )}
         </div>
     );
 }
