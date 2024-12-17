@@ -48,7 +48,7 @@ function LandingPage({ startGame }) {
             alert("Please enter player names!");
         }
     };
-
+    
     return (
         <div className={`landing-page ${isReady ? "ready" : ''}`}>
             {/* Background Music */}
