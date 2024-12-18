@@ -87,6 +87,11 @@ function LandingPage({ startGame }) {
                 </div>
                 <button onClick={handleStartGame}>Start Game</button>
             </div>
+
+           <>
+           <h3 className="progress">Game is working && <strong>Inprogress</strong></h3>
+           </>
+
         </div>
     );
 }
