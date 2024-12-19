@@ -35,7 +35,7 @@ body::before {
     z-index:-1; /* Ensure this is above the background but below content */
     pointer-events: none; /* Prevent interaction with the pseudo-element */
     animation: glowEffect 6s ease-in-out infinite;
-}
+}   
 
 
 h1, h2, p, .grid-wrapper {
