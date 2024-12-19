@@ -52,8 +52,13 @@ h1, h2, p, .grid-wrapper {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+    justify-content: space-between;
 
 }
+
+
+
+
 /* heading and input field styles*/
 
 h2 {
@@ -187,14 +192,63 @@ button:hover {
 }
 
 /* Additional styling for center alignment */
-.grid-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    justify-content: space-between;
+
+.turn-highlight {
+    font-family: 'Creepster', cursive; /* Horror-style font */
+    font-size: 3rem; /* Adjust size as needed */
+    color: rgba(0, 0, 0, 0.8); /* Blood red color */
     text-align: center;
-    /* max-width: 600px; */
-    /* margin-top: 50px; */
+    text-shadow: 
+        0 0 5px rgba(255, 0, 0, 0.8), 
+        0 0 10px rgba(255, 0, 0, 0.6), 
+        0 0 20px rgba(139, 0, 0, 0.5); /* Glowing shadow effect */
+    position: relative;
+    z-index: 2;
+    margin: 20px 0; 
+    animation: flicker 2s infinite; /* Flickering animation */
+}
+
+/* Flickering animation */
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 5px rgba(255, 0, 0, 0.8), 
+            0 0 10px rgba(255, 0, 0, 0.6), 
+            0 0 20px rgba(139, 0, 0, 0.5);
+    }
+    20%, 24%, 55% {
+        text-shadow: 
+            0 0 2px rgba(255, 0, 0, 0.6), 
+            0 0 5px rgba(255, 0, 0, 0.4), 
+            0 0 10px rgba(139, 0, 0, 0.3);
+    }
+}
+
+/* Adding a dripping effect (optional) */
+.turn-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 5px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Blood red */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    animation: drip 1.5s infinite ease-in-out;
+}
+
+/* Drip animation */
+@keyframes drip {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(15px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
