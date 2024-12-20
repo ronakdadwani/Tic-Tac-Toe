@@ -103,26 +103,6 @@
         font-size: 60px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Larger Screens (Desktops and Laptops) */
 @media (min-width: 1024px) {
     .card-container {
@@ -157,6 +137,7 @@
 
 /* Extra Small Screens (Mobile Phones) */
 @media (max-width: 400px) {
+    
     .card-container {
         flex-direction: column;
         gap: 5px;
