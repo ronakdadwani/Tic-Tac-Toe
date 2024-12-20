@@ -8,10 +8,24 @@ function Card({gameEnd , player, onPlay , index}){
     } else if (player === 'O'){
         icon = <Icon name = "circle"/>
     }
+
+    // play muic on card click if it not already playing
+    const playClickSound = () =>{
+        const clickSund = new Audio('./Assets/clicksound/click1.mp3')
+        clickSund.play();
+    }
+
+    // handle card click 
+    const handleClick = ( )=>{
+        if (!gameEnd &&  player === '') {
+            playClickSound();
+            onPlay(index);
+        }
+    }
     return (
 
-        <div className="card" onClick={()=> !gameEnd && player === '' &&  onPlay(index)}>
-            {icon}
+        <div className="card" onClick={handleClick}>
+        {icon}
     </div>
     )
 
