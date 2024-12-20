@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from '../card/card'
 import './Grid.css';
 import isWinner from "../helpers/checkWinner";
@@ -17,6 +17,19 @@ function Grid({numberOfCards}){
     const [gameStarted , setGameStarted] =useState(false)
     const [isNewGame , setIsNewGame] = useState(false) // state for new game option
     const [rematchCount , setRematchCount] = useState(0);
+
+    // player winner announcement sound
+    useEffect(()=>{
+        if(winner) {
+            const winnerSound = new Audio(
+                winner === "Draw"
+                ? '/draw-sound.mp3'
+                :`/winner-${winner === playerX ? 'x' : 'o'} -sound.mp3  ` 
+            )
+
+            winnerSound.play();
+        }
+    });
 
 
     // function to handle player move 
