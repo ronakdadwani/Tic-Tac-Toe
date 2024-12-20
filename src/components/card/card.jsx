@@ -11,6 +11,7 @@ function Card({gameEnd , player, onPlay , index}){
 
     // play muic on card click if it not already playing
     const playClickSound = () =>{
+       // const soundFile = turn ? '/o-click-sound.mp3' : 'x-click-sound.mp3'; // this line is for 2 sound effect for different different player 
         const clickSund = new Audio('./Assets/clicksound/click1.mp3')
         clickSund.play();
     }
