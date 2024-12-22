@@ -92,7 +92,7 @@ function LandingPage({ startGame }) {
             </div>
 
            <>
-           <h3 className="progress">Game is working && <strong>Inprogress</strong></h3>
+           <h3 className="progress">Game is working && still in meta </h3>
            </>
 
         </div>
