@@ -8,6 +8,7 @@ function LandingPage({ startGame }) {
     const audioRef = useRef(null); // Background music reference
     const keySoundRef = useRef(null); // Keypad sound reference
     const [isAudioEnabled, setIsAudioEnabled] = useState(false); // Track audio state
+    const [isMuted , setIsMuted] = useState(true);
 
     useEffect(() => {
         setIsReady(true);
@@ -49,10 +50,12 @@ function LandingPage({ startGame }) {
         }
     };
     
+    
     return (
         <div className={`landing-page ${isReady ? "ready" : ''}`}>
             {/* Background Music */}
-            <audio ref={audioRef} loop muted>
+            <audio ref={audioRef} loop isMuted >
+
                 <source src="./Assets/music/sound1.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
             </audio>
