@@ -116,7 +116,7 @@
 /* Horror Themed Button Styling */
 button {
   font-size: 1.5rem;
-  padding: 13px 7px 32px 9px;
+  padding: 16px;
   margin: 15px;
   background: linear-gradient(45deg, #8b0000, #2f2f2f); /* Blood red to dark gray */
   color: #a19494; /* Text color */
