@@ -197,17 +197,17 @@ button {
 
 @media (max-width: 576px) {
   .welcome-title {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
+    font-size: 6rem;
+    letter-spacing: 4px;
   }
   .player-input-section {
-    padding: 8px;
-    margin: 5px auto;
+    padding: 50px;
+    margin: 10px auto;
     max-width: 240px;
   }
   button {
-    font-size: 0.8rem;
-    padding: 5px 8px;
+    font-size: 2rem;
+    padding: 8px 8px;
   }
   .progress {
     font-size: 2rem;
