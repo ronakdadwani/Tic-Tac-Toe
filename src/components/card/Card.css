@@ -9,8 +9,6 @@
     backdrop-filter: blur(8px);
     border-radius: 20px;
     min-height: 50vh; /* Ensures the container doesn’t shrink excessively */
-    
-    
 }
 
 /* Card Styling */
@@ -108,46 +106,37 @@
     .card-container {
         gap: 40px; /* Increase gap between cards */
     }
-
     .card {
         width: 160px; /* Slightly larger cards */
         height: 160px;
     }
-
-    .card .icon {
+   .card .icon {
         font-size: 90px; /* Larger icons */
     }
 }
-
 /* Small Tablets */
 @media (max-width: 600px) {
     .card-container {
         gap: 10px; /* Reduce gaps for smaller screens */
     }
-
     .card {
         width: 100px;
         height: 100px;
     }
-
     .card .icon {
         font-size: 50px;
     }
 }
-
 /* Extra Small Screens (Mobile Phones) */
-@media (max-width: 400px) {
-    
+@media (max-width: 400px) {   
     .card-container {
         flex-direction: column;
         gap: 5px;
     }
-
     .card {
         width: 90px;
         height: 90px;
     }
-
     .card .icon {
         font-size: 40px;
     }
