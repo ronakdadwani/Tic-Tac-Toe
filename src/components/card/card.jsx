@@ -15,7 +15,6 @@ function Card({gameEnd , player, onPlay , index}){
         const clickSund = new Audio('./Assets/clicksound/click1.mp3')
         clickSund.play();
     }
-
     // handle card click 
     const handleClick = ( )=>{
         if (!gameEnd &&  player === '') {
@@ -24,7 +23,6 @@ function Card({gameEnd , player, onPlay , index}){
         }
     }
     return (
-
         <div className="card" onClick={handleClick}>
         {icon}
     </div>
