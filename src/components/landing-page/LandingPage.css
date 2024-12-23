@@ -1,8 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
-    /* cursor: grab; */
     font-family: 'Protest Revolution' , sans-serif;
     cursor: pointer;
     
@@ -53,7 +51,6 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    /* box-sizing: border-box; */
     line-height: 1.2;
     cursor: pointer;
     opacity: 1.5;
