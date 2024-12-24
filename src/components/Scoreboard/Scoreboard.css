@@ -1,32 +1,28 @@
 .scoreboard {
- /* display: flex;    */
- flex-direction: column;
- /* padding-left: 250px; */
- justify-content: space-around;
- /* padding: 20px; */
- background-color:rgba(0,0,0,0.8);
- border-radius: 10px;
- color:white;
- margin-bottom: 20px;
- position: fixed; /* Or absolute */
- bottom: 0; 
- left: 50%; /* Move the box to the horizontal center */
- width: 100px; /* Example width */
- height: 100px; /* Example height */
- background-color: #3498db; /* Example color */
-}
-
-.player-score {
+    position: fixed;
+    bottom: 10px;  /* 10px from the bottom of the screen */
+    left: 10px;    /* 10px from the left of the screen */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark, transparent background for horror effect */
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;  /* White text color for contrast */
+    font-family: 'Creepster', cursive; /* Horror font (you can use Google Fonts or any spooky font) */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Red glow for horror theme */
+    z-index: 1000; /* Ensure it is on top of other elements */
+  }
+  
+  .player-score {
+    margin-bottom: 10px;
     text-align: center;
-}
-
-.player-score h2 {
-    font-size: 1.5rem;
-    color: rgba(255, 0, 0, 0.9); /* Red text for player names */
-}
-
-.player-score p {
-    font-size: 1.2rem;
-    margin-top: 5px;
-    color: rgba(0, 255, 0, 0.8); /* Green for scores */
-}
+  }
+  
+  h2 {
+    font-size: 24px;
+    text-shadow: 2px 2px 5px rgba(255, 0, 0, 1); /* Blood-red text shadow */
+  }
+  
+  p {
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(255, 0, 0, 1); /* Red glow around text */
+  }
+  
