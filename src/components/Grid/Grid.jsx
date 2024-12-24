@@ -3,6 +3,7 @@ import Card from '../card/card'
 import './Grid.css';
 import isWinner from "../helpers/checkWinner";
 import LandingPage from "../landing-page/LandingPage";
+import Scoreboard from "../Scoreboard/Scoreboard"
 
 
 
@@ -17,6 +18,10 @@ function Grid({numberOfCards}){
     const [gameStarted , setGameStarted] =useState(false)
     const [isNewGame , setIsNewGame] = useState(false) // state for new game option
     const [rematchCount , setRematchCount] = useState(0);
+
+    const [scoreX , setScoreX] = useState(0); // player x score
+    const [scoreO , setScoreO] = useState(0); // player O score
+
 
     // player winner announcement sound
     useEffect(()=>{
@@ -33,23 +38,33 @@ function Grid({numberOfCards}){
 
 
     // function to handle player move 
-
-    function play(index){
-        if(board[index] !== '') return; // prevent clicking on already filled squares
-
-        const newBoard = [...board]; // create a corp of board
-        newBoard[index] = turn ? 'O' : 'X'; // mark the move on the board
+    function play(index) {
+        if (board[index] !== '') return; // Prevent clicking on already filled squares
+    
+        const newBoard = [...board]; // Create a copy of the board
+        newBoard[index] = turn ? 'O' : 'X'; // Mark the move on the board
         const currentPlayer = turn ? 'O' : 'X';
-        const win = isWinner(newBoard , currentPlayer); // check if there's a winner
-
-        if(win){
-            setWinner(turn ? playerO : playerX) // set the winner 
-        } else if (newBoard.every(cell => cell !== '')){
-            setWinner("Draw")
-        };
-        setBoard(newBoard); // update the board state
-        setTurn(!turn); // switch turns
-    }; 
+        const win = isWinner(newBoard, currentPlayer); // Check if there's a winner
+    
+        // Check for a winner
+        if (win) {
+            setWinner(turn ? playerO : playerX); // Set the winner's name
+            if (turn) {
+                setScoreO((prevScore) => prevScore + 1); // Increment player O's score
+            } else {
+                setScoreX((prevScore) => prevScore + 1); // Increment player X's score
+            }
+        } else if (newBoard.every((cell) => cell !== '')) {
+            // Check for a draw
+            setWinner("Draw"); // Handle draw
+        }
+    
+        // Update the board and toggle the turn
+        setBoard(newBoard);
+        setTurn(!turn);
+    }
+    
+      
 
         // start new game
         const startGame = (pX , pO) => {
@@ -101,6 +116,16 @@ function Grid({numberOfCards}){
                 <LandingPage startGame={startGame} />
             ) : (
                 <>
+
+                <>
+                    <Scoreboard
+
+                    playerX={playerX}
+                    playerO={playerO}
+                    scoreX={scoreX}
+                    scoreO={scoreO}
+                    />
+                </>
                     {winner && (
                         <>
                             <h1 className="turn-highlight">
