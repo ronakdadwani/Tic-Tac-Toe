@@ -1,0 +1,32 @@
+.scoreboard {
+ /* display: flex;    */
+ flex-direction: column;
+ /* padding-left: 250px; */
+ justify-content: space-around;
+ /* padding: 20px; */
+ background-color:rgba(0,0,0,0.8);
+ border-radius: 10px;
+ color:white;
+ margin-bottom: 20px;
+ position: fixed; /* Or absolute */
+ bottom: 0; 
+ left: 50%; /* Move the box to the horizontal center */
+ width: 100px; /* Example width */
+ height: 100px; /* Example height */
+ background-color: #3498db; /* Example color */
+}
+
+.player-score {
+    text-align: center;
+}
+
+.player-score h2 {
+    font-size: 1.5rem;
+    color: rgba(255, 0, 0, 0.9); /* Red text for player names */
+}
+
+.player-score p {
+    font-size: 1.2rem;
+    margin-top: 5px;
+    color: rgba(0, 255, 0, 0.8); /* Green for scores */
+}
