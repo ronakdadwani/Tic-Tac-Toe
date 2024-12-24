@@ -1,7 +1,10 @@
 .scoreboard {
     position: fixed;
-    bottom: 10px;  /* 10px from the bottom of the screen */
-    left: 10px;    /* 10px from the left of the screen */
+    width: 250px;
+    height: 250px;
+    align-content: center;
+    bottom: 90px;  /* 10px from the bottom of the screen */
+    left: 120px;    /* 10px from the left of the screen */
     background-color: rgba(0, 0, 0, 0.7); /* Dark, transparent background for horror effect */
     padding: 20px;
     border-radius: 10px;
@@ -9,20 +12,115 @@
     font-family: 'Creepster', cursive; /* Horror font (you can use Google Fonts or any spooky font) */
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Red glow for horror theme */
     z-index: 1000; /* Ensure it is on top of other elements */
-  }
-  
-  .player-score {
+}
+
+.player-score {
     margin-bottom: 10px;
     text-align: center;
-  }
-  
-  h2 {
-    font-size: 24px;
+}
+
+h2 {
+    font-size: 50px;
     text-shadow: 2px 2px 5px rgba(255, 0, 0, 1); /* Blood-red text shadow */
-  }
-  
-  p {
-    font-size: 18px;
+}
+
+p {
+    font-size: 25px;
     text-shadow: 1px 1px 3px rgba(255, 0, 0, 1); /* Red glow around text */
-  }
-  
+}
+
+
+
+
+
+/* responsive design  */
+
+/* Hide the scoreboard for screens 1160px or smaller */
+@media (max-width: 1160px) {
+    .scoreboard {
+        display: none; /* Hide the scoreboard on smaller screens */
+    }
+}
+
+/* For screens larger than 1160px */
+@media (min-width: 1161px) {
+    .scoreboard {
+        display: block; /* Show the scoreboard */
+        width: 250px;  /* Set the width for larger screens */
+        height: 250px; /* Set the height for larger screens */
+        bottom: 140px; /* Position the scoreboard from the bottom */
+        left: 30px;   /* Position it from the left */
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 60px;  /* Larger font size for headings */
+        text-shadow: 2px 2px 5px rgba(255, 0, 0, 1); /* Blood-red text shadow */
+    }
+
+    p {
+        font-size: 25px;  /* Slightly larger font size for paragraphs */
+        text-shadow: 1px 1px 3px rgba(255, 0, 0, 1); /* Red glow around text */
+    }
+}
+@media (min-width: 1300px) {
+    .scoreboard {
+        display: block; /* Show the scoreboard */
+        width: 250px;  /* Set the width for larger screens */
+        height: 250px; /* Set the height for larger screens */
+        bottom: 140px; /* Position the scoreboard from the bottom */
+        left: 70px;   /* Position it from the left */
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 60px;  /* Larger font size for headings */
+        text-shadow: 2px 2px 5px rgba(255, 0, 0, 1); /* Blood-red text shadow */
+    }
+
+    p {
+        font-size: 25px;  /* Slightly larger font size for paragraphs */
+        text-shadow: 1px 1px 3px rgba(255, 0, 0, 1); /* Red glow around text */
+    }
+}
+@media (min-width: 1439px) {
+    .scoreboard {
+        display: block; /* Show the scoreboard */
+        width: 250px;  /* Set the width for larger screens */
+        height: 250px; /* Set the height for larger screens */
+        bottom: 140px; /* Position the scoreboard from the bottom */
+        left: 85px;   /* Position it from the left */
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 60px;  /* Larger font size for headings */
+        text-shadow: 2px 2px 5px rgba(255, 0, 0, 1); /* Blood-red text shadow */
+    }
+
+    p {
+        font-size: 25px;  /* Slightly larger font size for paragraphs */
+        text-shadow: 1px 1px 3px rgba(255, 0, 0, 1); /* Red glow around text */
+    }
+}
+
+
+/* For very large screens (like ultra-wide displays) */
+@media (min-width: 1440px) {
+    .scoreboard {
+        width: 300px;  /* Increase the width for extra-large screens */
+        height: 300px; /* Increase the height for extra-large screens */
+        bottom: 100px; /* Adjust positioning */
+        left: 70px;   /* Adjust left margin */
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 70px;  /* Increase font size for ultra-wide screens */
+    }
+
+    p {
+        font-size: 30px;  /* Increase font size for paragraphs */
+    }
+}
+
