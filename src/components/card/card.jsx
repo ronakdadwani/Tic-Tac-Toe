@@ -1,3 +1,4 @@
+import isWinner from "../helpers/checkWinner";
 import Icon from "../icon/icon";
 import './Card.css'
 
@@ -13,6 +14,7 @@ function Card({gameEnd , player, onPlay , index}){
     const playClickSound = () =>{
        // const soundFile = turn ? '/o-click-sound.mp3' : 'x-click-sound.mp3'; // this line is for 2 sound effect for different different player 
         const clickSund = new Audio('./Assets/clicksound/click1.mp3')
+        clickSund === isWinner
         clickSund.play();
     }
     // handle card click 
