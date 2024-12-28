@@ -24,18 +24,20 @@ function Grid({numberOfCards}){
 
 
     // player winner announcement sound
-    useEffect(()=>{
-        if(winner) {
-            const winnerSound = new Audio(
-                winner === "Draw"
-                ? '/draw-sound.mp3'
-                :`/winner-${winner === playerX ? 'x' : 'o'} -sound.mp3  ` 
-            )
-
-            winnerSound.play();
+    useEffect(() => {
+        if (winner && winner !== "Draw") {
+            const announcement = `Winner is ${winner}`;
+            const utterance = new SpeechSynthesisUtterance(announcement);
+            utterance.lang = "en-US"; // Set language
+            utterance.pitch = 1; // Adjust pitch
+            utterance.rate = 1; // Adjust rate
+            window.speechSynthesis.speak(utterance);
+        } else if (winner === "Draw") {
+            const utterance = new SpeechSynthesisUtterance("It's a Draw");
+            utterance.lang = "en-US";
+            window.speechSynthesis.speak(utterance);
         }
-    });
-
+    }, [winner]); // Runs every time the winner changes
 
     // function to handle player move 
     function play(index) {
