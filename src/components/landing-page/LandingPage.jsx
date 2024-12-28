@@ -91,10 +91,6 @@ function LandingPage({ startGame }) {
                 <button onClick={handleStartGame}>Start Game</button>
             </div>
 
-           <>
-           <h3 className="progress">Game is working && still in meta </h3>
-           </>
-
         </div>
     );
 }
