@@ -4,12 +4,6 @@ import './Grid.css';
 import isWinner from "../helpers/checkWinner";
 import LandingPage from "../landing-page/LandingPage";
 import Scoreboard from "../Scoreboard/Scoreboard"
-import clickSoundXFile from './Assets/clicksound/click1.mp3'
-import clickSoundOFile from './Assets/clicksound/click1.mp3'
-
-const   clickSoundX = new audio(clickSoundFile)
-const   clickSoundO = new audio(clickSoundFile)
-
 
 
 function Grid({numberOfCards}){
@@ -161,8 +155,8 @@ function Grid({numberOfCards}){
                                 onPlay={play}
                                 player={el}
                                 index={idx}
-                                clickSoundX={clickSoundX}
-                                clickSoundO={clickSoundO}
+                                
+                               
                             />
                         ))}
                     </div>
