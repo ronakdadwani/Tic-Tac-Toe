@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import './LandingPage.css';
-import sound1 from '../../Assets/sound1.mp3';    
-import sound2 from '../../Assets/sound1.mp3';
 
 function LandingPage({ startGame }) {
     const [isReady, setIsReady] = useState(false);
@@ -10,7 +8,6 @@ function LandingPage({ startGame }) {
     const audioRef = useRef(null); // Background music reference
     const keySoundRef = useRef(null); // Keypad sound reference
     const [isAudioEnabled, setIsAudioEnabled] = useState(false); // Track audio state
-    const [isMuted , setIsMuted] = useState(true);
 
     useEffect(() => {
         setIsReady(true);
@@ -29,7 +26,7 @@ function LandingPage({ startGame }) {
         // Add listeners for both mousemove and click events
         window.addEventListener('mousemove', enableAudio);
         window.addEventListener('click', enableAudio);
-        
+
         // Cleanup event listeners
         return () => {
             window.removeEventListener('mousemove', enableAudio);
@@ -51,20 +48,18 @@ function LandingPage({ startGame }) {
             alert("Please enter player names!");
         }
     };
-    
-    
+
     return (
         <div className={`landing-page ${isReady ? "ready" : ''}`}>
             {/* Background Music */}
-            <audio ref={audioRef} loop isMuted >
-
-                <source src={sound1} type="audio/mpeg" />
+            <audio ref={audioRef} loop muted>
+                <source src="./Assets/music/sound1.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
             </audio>
 
             {/* Keypad Sound */}
             <audio ref={keySoundRef}>
-                <source src={sound2} type="audio/mpeg" />
+                <source src="./Assets/music/sound2.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
             </audio>
 
@@ -92,7 +87,6 @@ function LandingPage({ startGame }) {
                 </div>
                 <button onClick={handleStartGame}>Start Game</button>
             </div>
-
         </div>
     );
 }
