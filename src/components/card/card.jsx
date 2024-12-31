@@ -13,7 +13,7 @@ function Card({ gameEnd, player, onPlay, index, clickSoundX, clickSoundO }) {
     const playClickSound = () => {
         if (player === '') {
             if (clickSoundX && clickSoundO) {
-                const sound = player === 'O' ? clickSoundO : clickSoundX;
+                const sound = turn ? clickSoundO : clickSoundX;
                 sound.play();
             }
         }
