@@ -3,6 +3,7 @@ import './LandingPage.css';
 import sound1 from '../../Assets/sound1.mp3';    
 import sound2 from '../../Assets/sound1.mp3';
 
+
 function LandingPage({ startGame }) {
     const [isReady, setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
