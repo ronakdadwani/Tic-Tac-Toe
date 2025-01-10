@@ -1,7 +1,11 @@
 import Icon from "../icon/icon";
 import './Card.css';
+import clickSoundFile from '../../Assets/clicksound.mp3'
 
-function Card({ gameEnd, player, onPlay, index, clickSoundX, clickSoundO }) {
+const clicksound = new Audio(clickSoundFile);
+
+
+function Card({ gameEnd, player, onPlay, index, clickSound }) {
     let icon = <Icon />;
     if (player === 'X') {
         icon = <Icon name="cross" />;
@@ -11,11 +15,9 @@ function Card({ gameEnd, player, onPlay, index, clickSoundX, clickSoundO }) {
 
     // Play click sound based on the current player
     const playClickSound = () => {
-        if (player === '') {
-            if (clickSoundX && clickSoundO) {
-                const sound = turn ? clickSoundO : clickSoundX;
-                sound.play();
-            }
+        if (player === '' && clicksound) {
+            clicksound.play().catch((error) => {'error playing sound:' , error});
+            
         }
     };
 
