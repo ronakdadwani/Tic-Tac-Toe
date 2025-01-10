@@ -7,8 +7,8 @@ function LandingPage({ startGame}) {
     const [isReady, setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
-    const audioRef = useRef(new audio(bgSoundFile)); // Create a reference to the audio element
-    const keySoundRef = useRef(new audio(clickSoundFile)); // Create a reference to the audio element
+    const audioRef = useRef(new Audio(bgSoundFile)); // Create a reference to the audio element
+    const keySoundRef = useRef(new Audio(clickSoundFile)); // Create a reference to the audio element
     const [isAudioEnabled, setIsAudioEnabled] = useState(true); // Enable or disable audio
     const [isMuted, setIsMuted] = useState(false); // Mute or unmute audio
 
@@ -24,7 +24,7 @@ function LandingPage({ startGame}) {
                 setIsAudioEnabled(true);
             }
         }
-        window.addEventListener('click', enableAudio);
+        window.addEventListener('', enableAudio);
 
         return () => {
             window.removeEventListener('click', enableAudio);
