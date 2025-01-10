@@ -3,7 +3,7 @@ import './LandingPage.css';
 import bgSoundFile from '../../Assets/sound1.mp3';
 import clickSoundFile from '../../Assets/sound2.mp3';
 
-function LandingPage({ startGame}) {
+    function LandingPage({ startGame}) {
     const [isReady, setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
@@ -24,9 +24,11 @@ function LandingPage({ startGame}) {
                 setIsAudioEnabled(true);
             }
         }
-        window.addEventListener('', enableAudio);
+        window.addEventListener('mousemove', enableAudio);
+        window.addEventListener('click', enableAudio);
 
         return () => {
+            window.removeEventListener('mousemove', enableAudio);
             window.removeEventListener('click', enableAudio);
             if (audioRef.current) {
                 audioRef.current.pause();
@@ -51,13 +53,6 @@ function LandingPage({ startGame}) {
     const handleStartGame = () => {
         startGame(playerX, playerO);
 }
-    const toggleMute = () => {
-        setIsMuted(!isMuted);
-        if (audioRef.current) {
-            audioRef.current.muted = !isMuted;
-        }
-    };
-
     return (
         <div className="landing-page">
             <audio ref={audioRef} src={bgSoundFile} autoPlay loop></audio>
@@ -73,7 +68,7 @@ function LandingPage({ startGame}) {
                 </div>
 
                 <button onClick={handleStartGame} disabled={!isReady}>Start Game</button>
-                <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
+                {/* <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button> */}
             </div>
         </div>
     )
