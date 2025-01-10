@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"; 
+import React, { useEffect, useRef , useState } from "react"; 
 import './LandingPage.css';
 import bgSoundFile from '../../Assets/sound1.mp3';
 import clickSoundFile from '../../Assets/sound2.mp3';
@@ -50,5 +50,34 @@ function LandingPage({ startGame}) {
 
     const handleStartGame = () => {
         startGame(playerX, playerO);
-        
 }
+    const toggleMute = () => {
+        setIsMuted(!isMuted);
+        if (audioRef.current) {
+            audioRef.current.muted = !isMuted;
+        }
+    };
+
+    return (
+        <div className="landing-page">
+            <audio ref={audioRef} src={bgSoundFile} autoPlay loop></audio>
+            <audio ref={keySoundRef} src={clickSoundFile}></audio>
+
+            <h1 className="welcome-title">Tic Tac Toe</h1>
+
+            <div className="player-input-section">
+                <h2>Enter Player Names</h2>
+                <div className="input-fields">
+                    <input type="text" placeholder="Player X" value={playerX} onChange={(e) => handleInputChange(e, setPlayerX)} onKeyDown={handleKeySound} />
+                    <input type="text" placeholder="Player O" value={playerO} onChange={(e) => handleInputChange(e, setPlayerO)} onKeyDown={handleKeySound} />
+                </div>
+
+                <button onClick={handleStartGame} disabled={!isReady}>Start Game</button>
+                <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
+            </div>
+        </div>
+    )
+
+}
+
+export default LandingPage;
