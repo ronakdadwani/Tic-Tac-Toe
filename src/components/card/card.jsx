@@ -17,7 +17,6 @@ function Card({ gameEnd, player, onPlay, index, clickSound }) {
     const playClickSound = () => {
         if (player === '' && clicksound) {
             clicksound.play().catch((error) => {'error playing sound:' , error});
-            
         }
     };
 
