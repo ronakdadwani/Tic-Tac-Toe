@@ -126,13 +126,6 @@ input:focus {
     align-items: center;
     gap: 10px;
 }
-/* Highlighting the current turn text */
-.turn-highlight {
-    color: white; /* Keep this if you have a dark background */
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
 .grid div {
     width: 100px;
     height: 100px;
@@ -208,6 +201,7 @@ button:hover {
     z-index: 1;
     margin: 20px 0; 
     animation: flicker 5s infinite; /* Flickering animation */
+    display: flex;
 }
 
 /* Flickering animation */
