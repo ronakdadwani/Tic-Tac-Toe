@@ -167,6 +167,8 @@ input:focus {
 
 
 
+
+
 .new-game-option button {
     margin: 10px ;
     padding: 10px 25px;
@@ -190,7 +192,7 @@ button:hover {
 
 .turn-highlight {
     font-family: 'Creepster', cursive; /* Horror-style font */
-    font-size: 3rem; /* Adjust size as needed */
+    font-size: 33px; /* Adjust size as needed */
     color: rgba(0, 0, 0, 0.8); /* Blood red color */
     text-align: center;
     text-shadow: 
@@ -202,6 +204,11 @@ button:hover {
     margin: 20px 0; 
     animation: flicker 5s infinite; /* Flickering animation */
     display: flex;
+}
+
+.rematch {
+    margin-top: -4rem;
+    margin-left: 30rem;
 }
 
 /* Flickering animation */
