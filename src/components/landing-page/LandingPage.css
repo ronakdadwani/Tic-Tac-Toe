@@ -178,15 +178,16 @@ button {
   }
   #input-fields input{
     font-size: large;
+    
   }
   .player-input-section h2 {
-    font-size: 44px;
+    font-size: 36px;
     width: 407px;
     padding: 7px;
     margin-top: 21px
   }
   button {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 8px 15px;
   }
 }
