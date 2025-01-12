@@ -46,7 +46,6 @@ function Grid({numberOfCards}){
         newBoard[index] = turn ? 'O' : 'X'; // Mark the move on the board
         const currentPlayer = turn ? 'O' : 'X';
         const win = isWinner(newBoard, currentPlayer); // Check if there's a winner
-    
         // Check for a winner
         if (win) {
             setWinner(turn ? playerO : playerX); // Set the winner's name
@@ -85,7 +84,7 @@ function Grid({numberOfCards}){
                 setTurn(true)
                 setWinner(null)
                 setBoard(Array(numberOfCards).fill(''))
-                setRematchCount(rematchCount + 1 )
+                setRematchCount(rematchCount + 2 )
             } 
             else {
                 setTurn(true)
@@ -102,8 +101,11 @@ function Grid({numberOfCards}){
         setGameStarted(false);
         setBoard(Array(numberOfCards).fill(''))
         setTurn(true)
-        setIsNewGame(false);
+        setIsNewGame(false); // set new game to false
         setRematchCount(0)
+        setWinner(null);
+        setScoreX(0);
+        setScoreO(0);
 
     }
 
@@ -117,7 +119,6 @@ function Grid({numberOfCards}){
                 <LandingPage startGame={startGame} />
             ) : (
                 <>
-
                 <>
                     <Scoreboard
 
