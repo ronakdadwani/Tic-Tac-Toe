@@ -201,15 +201,11 @@ button:hover {
         0 0 20px rgba(139, 0, 0, 0.5); /* Glowing shadow effect */
     position: relative;
     z-index: 1;
-    margin: 20px 0; 
+    margin: 34px; 
     animation: flicker 5s infinite; /* Flickering animation */
     display: flex;
 }
 
-.rematch {
-    margin-top: -4rem;
-    margin-left: 30rem;
-}
 
 /* Flickering animation */
 @keyframes flicker {
