@@ -147,9 +147,14 @@ button {
 
 /* Responsive design   */
 
+/* General styles */
+button {
+  font-size: 30px;
+  padding: 5px 10px;
+}
 
+/* Media queries for different screen sizes */
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .welcome-title {
     font-size: 7rem;
@@ -191,7 +196,7 @@ button {
     padding: 8px 15px;
   }
 }
-
+/* For tablets and small desktops */
 @media (max-width: 768px) {
   .landing-page {
     padding: 10px;
@@ -209,30 +214,55 @@ button {
   }
 
   button {
-    font-size: 0.9rem;
+    font-size: 30px;
     padding: 5px 10px;
   }
 }
 
-@media (max-width: 576px) { /* mobile responsive*/
-  
+
+/* For mobile devices */
+@media (max-width: 480px) {
   .welcome-title {
-    font-size: 6rem;
-    letter-spacing: 4px;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
   }
   .player-input-section {
-    padding: 20px;
-    /* margin: 10px auto; */
-    max-width: 70%;
+      padding: 15px;
+      max-width: 90%;
   }
   .player-input-section h2 {
-    font-size: 2.5rem;
+      font-size: 25px;
   }
   button {
-    font-size: 1.5rem;
-    padding: 8px 8px;
+      font-size: 1.5rem;
+      padding: 8px 10px;
   }
   .progress {
-    font-size: 2rem;
+      font-size: 2rem;
+  }
+}
+
+/* For very small mobile devices */
+@media (max-width: 320px) {
+  .welcome-title {
+    font-size: 52px;
+    letter-spacing: 5px;
+    margin-right: 17px;
+  }
+  .player-input-section {
+    padding: 4px;
+    max-width: 88%;
+    margin-right: 52px;
+  }
+  .player-input-section h2 {
+    font-size: 27px;
+    margin-top: 27px;
+  }
+  button {
+    font-size: 28px;
+    padding: 8px 15px;
+  }
+  .progress {
+      font-size: 1.5rem;
   }
 }
