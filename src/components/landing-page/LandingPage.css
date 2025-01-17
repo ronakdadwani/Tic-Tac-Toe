@@ -140,7 +140,15 @@ button {
   font-size: 30px;
   padding: 5px 10px;
 }
-
+.link-video{
+  color: white;
+  font-size: 20px;
+  height: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+  border: 3px solid #8b0000;
+  padding: 10px;
+}
 /* Media queries for different screen sizes */
 
 @media (max-width: 1200px) {
