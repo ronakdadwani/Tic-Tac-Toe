@@ -69,7 +69,7 @@ import clickSoundFile from '../../Assets/sound2.mp3';
 
                 <button onClick={handleStartGame} disabled={!isReady}>Start Game</button>
                 {/* <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button> */}
-                <button><a href="https://drive.google.com/file/d/1HOfVib-eP6G45_uPkCvpjrNzguUabZ9V/view?usp=sharing" target="_blank"></a>GE INTERNSHIP VIDEO LINK</button>
+                <a className="link-video" href="https://drive.google.com/file/d/1HOfVib-eP6G45_uPkCvpjrNzguUabZ9V/view?usp=sharing" target="_blank">GE INTERNSHIP VIDEO LINK</a>
             </div>
 
            
