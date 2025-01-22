@@ -29,12 +29,7 @@ p {
     text-shadow: 1px 1px 3px rgba(255, 0, 0, 1); /* Red glow around text */
 }
 
-
-
-
-
 /* responsive design  */
-
 /* Hide the scoreboard for screens 1160px or smaller */
 @media (max-width: 1160px) {
     .scoreboard {
