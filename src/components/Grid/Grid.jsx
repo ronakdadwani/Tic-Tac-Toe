@@ -70,6 +70,11 @@ function Grid({ numberOfCards }) {
 
     // Reset function
     const reset = () => {
+        setTurn(true);
+        setWinner(null);
+        setBoard(Array(numberOfCards).fill(''));
+
+
         if (winner === "Draw" && rematchCount === 1) {
             // After second draw, reset to main screen
             setGameStarted(false);
@@ -119,7 +124,7 @@ function Grid({ numberOfCards }) {
                                 {winner === "Draw" ? "It's a Draw" : `Winner is ${winner}`}
                             </h1>
 
-                            <button className="reset-game">Reset Game</button>
+                            <button className="reset-game" onClick={reset}>Reset Game</button>
                             {winner !== "Draw" && (
                                 <button className="reset" onClick={startNewGame}>Start New Game</button>
                             )}
