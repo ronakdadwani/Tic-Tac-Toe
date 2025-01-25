@@ -118,6 +118,8 @@ function Grid({ numberOfCards }) {
                             <h1 className="turn-highlight">
                                 {winner === "Draw" ? "It's a Draw" : `Winner is ${winner}`}
                             </h1>
+
+                            <button className="reset-game">Reset Game</button>
                             {winner !== "Draw" && (
                                 <button className="reset" onClick={startNewGame}>Start New Game</button>
                             )}
