@@ -188,6 +188,21 @@ button:hover {
     background-color: #2ecc71;
 }
 
+
+.reset-game{
+    padding: 12px 27px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 18px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 28rem;
+    margin-top: -79px;
+}
+
 /* Additional styling for center alignment */
 
 .turn-highlight {
