@@ -216,7 +216,7 @@ button:hover {
         0 0 20px rgba(139, 0, 0, 0.5); /* Glowing shadow effect */
     position: relative;
     z-index: 1;
-    margin: 34px; 
+    margin: 36px; 
     animation: flicker 5s infinite; /* Flickering animation */
     display: flex;
 }
