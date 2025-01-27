@@ -158,5 +158,4 @@ function Grid({ numberOfCards }) {
         </div>
     );
 }
-
 export default Grid;
