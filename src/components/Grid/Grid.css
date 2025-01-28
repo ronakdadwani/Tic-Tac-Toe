@@ -163,12 +163,6 @@ input:focus {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Adds shadow */
     margin-bottom: 10px;
 }
-
-
-
-
-
-
 .new-game-option button {
     margin: 10px ;
     padding: 10px 25px;
@@ -187,8 +181,6 @@ button:hover {
 .new-game-option button:hover {
     background-color: #2ecc71;
 }
-
-
 .reset-game{
     padding: 12px 27px;
     background-color: #e74c3c;
@@ -202,9 +194,7 @@ button:hover {
     margin-left: 28rem;
     margin-top: -79px;
 }
-
 /* Additional styling for center alignment */
-
 .turn-highlight {
     font-family: 'Creepster', cursive; /* Horror-style font */
     font-size: 33px; /* Adjust size as needed */
