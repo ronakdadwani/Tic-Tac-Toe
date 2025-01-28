@@ -30,7 +30,6 @@ function Card({ gameEnd, player, onPlay, index, }) {
             onPlay(index);
         }
     };
-
     return (
         <div className="card" onClick={handleClick}>
             {icon}
