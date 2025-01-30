@@ -14,7 +14,6 @@ import clickSoundFile from '../../Assets/sound2.mp3';
 
     useEffect(() =>{
         setIsReady(true);
-
         const enableAudio = () => { 
             if (isAudioEnabled) {
                 audioRef.current.muted = isMuted;
@@ -43,13 +42,11 @@ import clickSoundFile from '../../Assets/sound2.mp3';
             keySoundRef.current.play().catch((error) => {'error playing sound:', error});
         }
     };
-
     const handleKeySound = () =>{
         if(keySoundRef.current && isAudioEnabled) {
             keySoundRef.current.play().catch((error) => {'error playing sound:', error});
         }
     }
-
     const handleStartGame = () => {
         startGame(playerX, playerO);
 }
