@@ -126,10 +126,6 @@ function Grid({ numberOfCards }) {
                             {winner !== "Draw" && (
                                 <button className="reset-game" onClick={reset}>Reset Game</button>
                             )}
-
-                            {winner !== "Draw" && (
-                                <button className="reset" onClick={startNewGame}>Start New Game</button>
-                            )}
                             {winner === "Draw" && (
                                 <button className="rematch" onClick={reset}>
                                     {rematchCount === 1 ? "Final Match - End Game" : "Rematch"}
