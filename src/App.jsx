@@ -6,9 +6,7 @@ import Grid from './components/Grid/Grid'
 function App() {
   return (
     <>
-      <Grid numberOfCards={9} />
-      
-      
+      <Grid numberOfCards={9}/>
     </>
   )
 }
