@@ -1,18 +1,21 @@
-import React, { useEffect, useRef , useState } from "react"; 
+import React, { useEffect, useRef, useState } from "react"; 
 import './LandingPage.css';
 import bgSoundFile from '../../Assets/sound1.mp3';
 import clickSoundFile from '../../Assets/sound2.mp3';
 
-    function LandingPage({ startGame}) {
+function LandingPage({ startGame }) {
     const [isReady, setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
-    const audioRef = useRef(new Audio(bgSoundFile)); // Create a reference to the audio element
-    const keySoundRef = useRef(new Audio(clickSoundFile)); // Create a reference to the audio element
-    const [isAudioEnabled, setIsAudioEnabled] = useState(true); // Enable or disable audio
-    const [isMuted, setIsMuted] = useState(false); // Mute or unmute audio
+    const [gameMode, setGameMode] = useState('pvp');
+    const [aiDifficulty, setAiDifficulty] = useState('hard');
+    const [errorMessage, setErrorMessage] = useState('');
+    const audioRef = useRef(new Audio(bgSoundFile));
+    const keySoundRef = useRef(new Audio(clickSoundFile));
+    const [isAudioEnabled, setIsAudioEnabled] = useState(true);
+    const [isMuted, setIsMuted] = useState(false);
 
-    useEffect(() =>{
+    useEffect(() => {
         setIsReady(true);
         const enableAudio = () => { 
             if (isAudioEnabled) {
@@ -36,20 +39,64 @@ import clickSoundFile from '../../Assets/sound2.mp3';
         }
     }, [isAudioEnabled, isMuted]);
 
-    const handleInputChange = (e , setPlayer) => {
-        setPlayer(e.target.value);
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                handleStartGame();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [playerX, playerO, gameMode, aiDifficulty]);
+
+    const handleInputChange = (e, player) => {
+        if (player === 'X') {
+            setPlayerX(e.target.value);
+        } else {
+            setPlayerO(e.target.value);
+        }
+        setErrorMessage(''); // Clear error message on input change
         if(keySoundRef.current && isAudioEnabled) {
             keySoundRef.current.play().catch((error) => {'error playing sound:', error});
         }
     };
-    const handleKeySound = () =>{
+
+    const handleKeySound = () => {
         if(keySoundRef.current && isAudioEnabled) {
             keySoundRef.current.play().catch((error) => {'error playing sound:', error});
         }
-    }
+    };
+
+    const handleGameModeChange = (mode) => {
+        setGameMode(mode);
+        setErrorMessage(''); // Clear error message on game mode change
+        if(keySoundRef.current && isAudioEnabled) {
+            keySoundRef.current.play().catch((error) => {'error playing sound:', error});
+        }
+    };
+
+    const handleAiDifficultyChange = (difficulty) => {
+        setAiDifficulty(difficulty);
+    };
+
     const handleStartGame = () => {
-        startGame(playerX, playerO);
-}
+        if (!playerX.trim()) {
+            setErrorMessage("Player X name cannot be empty!");
+            return;
+        }
+
+        if (gameMode === 'pvp' && !playerO.trim()) {
+            setErrorMessage("Player O name cannot be empty in Player vs Player mode!");
+            return;
+        }
+
+        startGame(playerX.trim(), playerO.trim(), gameMode, aiDifficulty);
+    };
+
     return (
         <div className="landing-page">
             <audio ref={audioRef} src={bgSoundFile} autoPlay loop></audio>
@@ -60,19 +107,85 @@ import clickSoundFile from '../../Assets/sound2.mp3';
             <div className="player-input-section">
                 <h2>Enter Player Names</h2>
                 <div className="input-fields">
-                    <input type="text" placeholder="Player X" value={playerX} onChange={(e) => handleInputChange(e, setPlayerX)} onKeyDown={handleKeySound} />
-                    <input type="text" placeholder="Player O" value={playerO} onChange={(e) => handleInputChange(e, setPlayerO)} onKeyDown={handleKeySound} />
+                    <input 
+                        type="text" 
+                        placeholder="Player X" 
+                        value={playerX} 
+                        onChange={(e) => handleInputChange(e, 'X')} 
+                        onKeyDown={handleKeySound}
+                        className={errorMessage.includes("Player X") ? 'error' : ''}
+                    />
+                    {gameMode === 'pvp' && (
+                        <input 
+                            type="text" 
+                            placeholder="Player O" 
+                            value={playerO} 
+                            onChange={(e) => handleInputChange(e, 'O')} 
+                            onKeyDown={handleKeySound}
+                            className={errorMessage.includes("Player O") ? 'error' : ''}
+                        />
+                    )}
                 </div>
 
-                <button onClick={handleStartGame} disabled={!isReady}>Start Game</button>
-                {/* <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button> */}
-               
+                {errorMessage && (
+                    <div className="error-message">
+                        {errorMessage}
+                    </div>
+                )}
+
+                <div className="game-mode-selector">
+                    <h3>Select Game Mode</h3>
+                    <div className="mode-buttons">
+                        <button
+                            className={`pvp-button ${gameMode === 'pvp' ? 'active' : ''}`}
+                            onClick={() => handleGameModeChange('pvp')}
+                        >
+                            Player vs Player
+                        </button>
+                        <button
+                            className={`ai-mode-button ${gameMode === 'ai' ? 'active' : ''}`}
+                            onClick={() => handleGameModeChange('ai')}
+                        >
+                            Player vs AI
+                        </button>
+                    </div>
+                </div>
+
+                {gameMode === 'ai' && (
+                    <div className="ai-difficulty-selector">
+                        <h3>AI Difficulty</h3>
+                        <div className="difficulty-buttons">
+                            <button
+                                className={aiDifficulty === 'easy' ? 'active' : ''}
+                                onClick={() => handleAiDifficultyChange('easy')}
+                            >
+                                Easy
+                            </button>
+                            <button
+                                className={aiDifficulty === 'medium' ? 'active' : ''}
+                                onClick={() => handleAiDifficultyChange('medium')}
+                            >
+                                Medium
+                            </button>
+                            <button
+                                className={aiDifficulty === 'hard' ? 'active' : ''}
+                                onClick={() => handleAiDifficultyChange('hard')}
+                            >
+                                Hard
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                <button 
+                    onClick={handleStartGame} 
+                    disabled={!isReady}
+                >
+                    Start Game
+                </button>
             </div>
-
-           
         </div>
-    )
-
+    );
 }
 
 export default LandingPage;
