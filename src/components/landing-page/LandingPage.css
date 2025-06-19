@@ -36,7 +36,7 @@
     }
   }
   .welcome-title {
-    font-size: 10rem;
+    font-size: 6.5rem;
     font-family: 'Creepster', cursive; /*Creepy font*/
     color: rgb(0, 0, 0); /* White text color for high contrast */
     animation: blink 8s ease-in-out infinite; /* Smooth, continuous loop */
@@ -68,7 +68,7 @@
     background-color: rgba(0, 0, 0, 0.586);
     margin: 25px;
     border-radius: 15px;
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
     margin-bottom: 60px;
     position: relative;
@@ -118,6 +118,45 @@ button {
   position: relative;
   overflow: hidden;
 }
+
+.player-input-section .start-game-button {
+    font-size: 2.2rem; /* Larger and more visible font */
+    padding: 18px 35px; /* Increased padding */
+    margin-top: 30px; /* More space from elements above */
+    background: linear-gradient(145deg, #e74c3c, #c0392b); /* Striking red gradient */
+    color: #fff; /* White text for contrast */
+    border: 3px solid #ff0000; /* Prominent red border */
+    border-radius: 12px; /* Slightly more rounded */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.7), inset 0 0 10px rgba(255, 0, 0, 0.4); /* Glowing red shadow */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Smooth transitions for effects */
+    cursor: pointer;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8); /* Text shadow for visibility */
+}
+
+.player-input-section .start-game-button:hover {
+    transform: translateY(-3px) scale(1.02); /* Slight lift and scale on hover */
+    box-shadow: 0 0 35px rgba(255, 0, 0, 1), inset 0 0 15px rgba(255, 0, 0, 0.6); /* More intense glow on hover */
+    background: linear-gradient(145deg, #c0392b, #e74c3c);
+}
+
+.player-input-section .start-game-button:active {
+    transform: translateY(0) scale(0.98); /* Press down effect on click */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), inset 0 0 8px rgba(255, 0, 0, 0.3); /* Subtler glow on click */
+}
+
+.player-input-section .start-game-button:disabled {
+    background: linear-gradient(145deg, #4b0000, #330000); /* Darker background when disabled */
+    color: #888; /* Faded text color */
+    border-color: #550000; /* Darker border */
+    box-shadow: none; /* No shadow when disabled */
+    cursor: not-allowed; /* Indicates non-interactable */
+    transform: none; /* No transform effects */
+    pointer-events: none; /* Ensures no interaction */
+}
+
 .progress {
   color: black;
   font-size: 3rem;
@@ -155,27 +194,34 @@ button {
 
 @media (max-width: 1200px) {
   .welcome-title {
-    font-size: 7rem;
+    font-size: 6rem;
     letter-spacing: 8px;
   }
   .player-input-section {
-    padding: 20px;
-    max-width: 57%;
+    padding: 25px;
+    max-width: 400px;
     margin: 20px auto;
   }
   button {
     font-size: 1.2rem;
     padding: 10px 20px;
   }
+  .input-fields {
+    max-width: 320px;
+  }
+  .input-fields input {
+    padding: 12px 18px;
+    font-size: 17px;
+  }
 }
 @media (max-width: 992px) {
   .welcome-title {
-    font-size: 7rem;
+    font-size: 5.5rem;
     letter-spacing: 5px;
   }
   .player-input-section {
-    padding: 10px;
-    max-width: 70%;
+    padding: 20px;
+    max-width: 380px;
   }
   #input-fields input{
     font-size: large;
@@ -192,6 +238,13 @@ button {
     font-size: 1.5rem;
     padding: 8px 15px;
   }
+  .input-fields {
+    max-width: 300px;
+  }
+  .input-fields input {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
 }
 /* For tablets and small desktops */
 @media (max-width: 768px) {
@@ -199,18 +252,26 @@ button {
     padding: 10px;
   }
   .welcome-title {
-    font-size: 6.5rem;
+    font-size: 5rem;
     letter-spacing: 9px;
   }
   .player-input-section {
-    padding: 10px;
+    padding: 15px;
     margin: 10px auto;
-    max-width: 70%;
+    max-width: 320px;
   }
 
   button {
     font-size: 30px;
     padding: 5px 10px;
+  }
+  .input-fields {
+    max-width: 180px;
+    gap: 8px;
+  }
+  .input-fields input {
+    padding: 6px 10px;
+    font-size: 13px;
   }
 }
 
@@ -218,7 +279,7 @@ button {
 /* For mobile devices */
 @media (max-width: 480px) {
   .welcome-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       letter-spacing: 2px;
   }
   .player-input-section {
@@ -235,18 +296,26 @@ button {
   .progress {
       font-size: 2rem;
   }
+  .input-fields {
+      max-width: 90%;
+      gap: 10px;
+  }
+  .input-fields input {
+      padding: 8px 12px;
+      font-size: 14px;
+  }
 }
 
 /* For very small mobile devices */
 @media (max-width: 320px) {
   .welcome-title {
-    font-size: 52px;
+    font-size: 45px;
     letter-spacing: 5px;
     margin-right: 17px;
   }
   .player-input-section {
-    padding: 4px;
-    max-width: 88%;
+    padding: 10px;
+    max-width: 95%;
     margin-right: 52px;
   }
   .player-input-section h2 {
@@ -260,4 +329,192 @@ button {
   .progress {
       font-size: 1.5rem;
   }
+  .input-fields {
+    max-width: 95%;
+  }
+  .input-fields input {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+.game-mode-selector {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.game-mode-selector h3 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.mode-buttons button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 180px;
+    text-align: center;
+}
+
+.mode-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+}
+
+.mode-buttons button.active {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
+}
+
+.pvp-button.active {
+    background: linear-gradient(145deg, #3498db, #2980b9); /* Blue gradient */
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.8), inset 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.ai-mode-button.active {
+    background: linear-gradient(145deg, #f39c12, #e67e22); /* Orange gradient */
+    box-shadow: 0 0 20px rgba(243, 156, 18, 0.8), inset 0 0 10px rgba(243, 156, 18, 0.5);
+}
+
+.mode-buttons button.active:hover {
+    background: linear-gradient(145deg, #c0392b, #e74c3c);
+}
+
+.pvp-button.active:hover {
+    background: linear-gradient(145deg, #2980b9, #3498db);
+}
+
+.ai-mode-button.active:hover {
+    background: linear-gradient(145deg, #e67e22, #f39c12);
+}
+
+.error-message {
+    color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.input-fields input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-fields input:focus {
+    outline: none;
+    border-color: #e74c3c;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.input-fields input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-fields input.error {
+    border: 2px solid #ff0000;
+    animation: shake 0.5s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.input-fields input.error:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.ai-difficulty-selector {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.ai-difficulty-selector h3 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.difficulty-buttons button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 120px;
+    text-align: center;
+}
+
+.difficulty-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+}
+
+.difficulty-buttons button.active {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
+}
+
+.difficulty-buttons button.active:hover {
+    background: linear-gradient(145deg, #c0392b, #e74c3c);
 }
