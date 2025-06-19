@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Card from '../card/card';
 import './Grid.css';
 import isWinner from "../helpers/checkWinner";
 import LandingPage from "../landing-page/LandingPage";
 import Scoreboard from "../Scoreboard/Scoreboard";
+import { makeAIMove } from "../helpers/ai";
 
 function Grid({ numberOfCards }) {
     const [board, setBoard] = useState(Array(numberOfCards).fill(""));
-    const [turn, setTurn] = useState(true); // true => O, false => X
+    const [turn, setTurn] = useState(false); // false => X, true => O
     const [winner, setWinner] = useState(null);
     const [playerX, setPlayerX] = useState('');
     const [playerO, setPlayerO] = useState('');
@@ -16,6 +17,9 @@ function Grid({ numberOfCards }) {
     const [rematchCount, setRematchCount] = useState(0);
     const [scoreX, setScoreX] = useState(0);
     const [scoreO, setScoreO] = useState(0);
+    const [gameMode, setGameMode] = useState('pvp');
+    const [isAITurn, setIsAITurn] = useState(false);
+    const [aiDifficulty, setAiDifficulty] = useState('hard'); // New state for AI difficulty
 
     // Player winner announcement sound
     useEffect(() => {
@@ -34,62 +38,90 @@ function Grid({ numberOfCards }) {
     }, [winner]);
 
     // Function to handle player move
-    function play(index) {
-        if (board[index] !== '' || winner) return; // Prevent clicking on already filled squares or if there's a winner
-
-        const newBoard = [...board]; // Create a copy of the board
-        newBoard[index] = turn ? 'O' : 'X'; // Mark the move on the board
-        const currentPlayer = turn ? 'O' : 'X';
-        const win = isWinner(newBoard, currentPlayer); // Check if there's a winner
-
-        // Check for a winner
-        if (win) {
-            setWinner(turn ? playerO : playerX); // Set the winner's name
-            if (turn) {
-                setScoreO((prevScore) => prevScore + 1); // Increment player O's score
-            } else {
-                setScoreX((prevScore) => prevScore + 1); // Increment player X's score
-            }
-        } else if (newBoard.every((cell) => cell !== '')) {
-            // Check for a draw
-            setWinner("Draw"); // Handle draw
+    const play = useCallback((index, isAICall = false) => {
+        if (board[index] !== '' || winner) {
+            return;
         }
 
-        // Update the board and toggle the turn
+        // Prevent human from playing during AI's turn
+        if (gameMode === 'ai' && isAITurn && !isAICall) {
+            return;
+        }
+
+        const newBoard = [...board];
+        const currentPlayer = turn ? 'O' : 'X';
+        newBoard[index] = currentPlayer;
+
+        const win = isWinner(newBoard, currentPlayer);
+
+        if (win) {
+            setWinner(turn ? playerO : playerX);
+            if (turn) {
+                setScoreO((prevScore) => prevScore + 1);
+            } else {
+                setScoreX((prevScore) => prevScore + 1);
+            }
+        } else if (newBoard.every((cell) => cell !== '')) {
+            setWinner("Draw");
+        }
+
         setBoard(newBoard);
-        setTurn(!turn);
-    }
+        setTurn(prevTurn => !prevTurn);
+        
+        if (gameMode === 'ai') {
+            setIsAITurn(prevIsAITurn => !prevIsAITurn);
+        }
+    }, [board, winner, gameMode, isAITurn, turn, playerO, playerX, setBoard, setWinner, setScoreO, setScoreX, setTurn, setIsAITurn]);
+
+    // Handle AI moves
+    useEffect(() => {
+        if (gameMode === 'ai' && isAITurn && !winner) {
+            // Pass a copy of the board to avoid direct mutation within minimax
+            makeAIMove([...board], (moveIndex) => play(moveIndex, true), aiDifficulty); // Pass aiDifficulty
+        }
+    }, [isAITurn, board, gameMode, winner, play, aiDifficulty]);
 
     // Start new game
-    const startGame = (pX, pO) => {
+    const startGame = (pX, pO, mode, difficulty) => {
         setPlayerX(pX);
-        setPlayerO(pO);
+        setPlayerO(mode === 'ai' ? 'AI' : pO);
+        setGameMode(mode);
         setGameStarted(true);
         setRematchCount(0);
+        setIsAITurn(false);
+        setTurn(false); // X goes first
+        setAiDifficulty(difficulty); // Set AI difficulty
     };
 
-    // Reset function
+    // Reset function (now used for draw/rematch)
     const reset = () => {
-        setTurn(true);
+        setTurn(false); // X goes first
         setWinner(null);
         setBoard(Array(numberOfCards).fill(''));
-
+        setIsAITurn(false);
 
         if (winner === "Draw" && rematchCount === 1) {
-            // After second draw, reset to main screen
             setGameStarted(false);
             setIsNewGame(false);
             setRematchCount(0);
         } else if (winner === "Draw") {
-            setTurn(true);
+            setTurn(false);
             setWinner(null);
             setBoard(Array(numberOfCards).fill(''));
             setRematchCount(rematchCount + 2);
         } else {
-            setTurn(true);
+            setTurn(false);
             setWinner(null);
             setBoard(Array(numberOfCards).fill(""));
         }
+    };
+
+    // Start a new round after a win (scores kept)
+    const startNextRound = () => {
+        setTurn(false); // X goes first
+        setWinner(null);
+        setBoard(Array(numberOfCards).fill(''));
+        setIsAITurn(false);
     };
 
     // Start a new game with new player names
@@ -98,12 +130,15 @@ function Grid({ numberOfCards }) {
         setPlayerO('');
         setGameStarted(false);
         setBoard(Array(numberOfCards).fill(''));
-        setTurn(true);
+        setTurn(false);
         setIsNewGame(false);
         setRematchCount(0);
         setWinner(null);
         setScoreX(0);
         setScoreO(0);
+        setGameMode('pvp');
+        setIsAITurn(false);
+        setAiDifficulty('hard'); // Reset AI difficulty to default
     };
 
     return (
@@ -112,6 +147,10 @@ function Grid({ numberOfCards }) {
                 <LandingPage startGame={startGame} />
             ) : (
                 <>
+                    <button className="home-button" onClick={startNewGame}>
+                        <span className="home-icon">🏠</span>
+                        Home
+                    </button>
                     <Scoreboard
                         playerX={playerX}
                         playerO={playerO}
@@ -124,7 +163,7 @@ function Grid({ numberOfCards }) {
                                 {winner === "Draw" ? "It's a Draw" : `Winner is ${winner}`}
                             </h1>
                             {winner !== "Draw" && (
-                                <button className="reset-game" onClick={reset}>Reset Game</button>
+                                <button className="reset-game" onClick={startNextRound}>One More Game</button>
                             )}
                             {winner === "Draw" && (
                                 <button className="rematch" onClick={reset}>
@@ -143,7 +182,7 @@ function Grid({ numberOfCards }) {
                             <Card
                                 key={idx}
                                 gameEnd={winner ? true : false}
-                                onPlay={play}
+                                onPlay={(i) => play(i, false)} // Human calls play with isAICall = false
                                 player={el}
                                 index={idx}
                             />
@@ -154,4 +193,5 @@ function Grid({ numberOfCards }) {
         </div>
     );
 }
+
 export default Grid;
