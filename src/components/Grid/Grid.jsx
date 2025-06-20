@@ -5,6 +5,7 @@ import isWinner from "../helpers/checkWinner";
 import LandingPage from "../landing-page/LandingPage";
 import Scoreboard from "../Scoreboard/Scoreboard";
 import { makeAIMove } from "../helpers/ai";
+import clickSoundFile from "../../Assets/clicksound.mp3";
 
 function Grid({ numberOfCards }) {
     const [board, setBoard] = useState(Array(numberOfCards).fill(""));
@@ -20,6 +21,11 @@ function Grid({ numberOfCards }) {
     const [gameMode, setGameMode] = useState('pvp');
     const [isAITurn, setIsAITurn] = useState(false);
     const [aiDifficulty, setAiDifficulty] = useState('hard'); // New state for AI difficulty
+    const clickSoundRef = useRef();
+
+    if (!clickSoundRef.current) {
+        clickSoundRef.current = new Audio(clickSoundFile);
+    }
 
     // Player winner announcement sound
     useEffect(() => {
@@ -42,6 +48,11 @@ function Grid({ numberOfCards }) {
         if (board[index] !== '' || winner) {
             return;
         }
+
+        // Play click sound for both human and AI moves
+        const clickSound = clickSoundRef.current;
+        clickSound.currentTime = 0;
+        clickSound.play().catch((error) => { 'error playing sound:', error });
 
         // Prevent human from playing during AI's turn
         if (gameMode === 'ai' && isAITurn && !isAICall) {
