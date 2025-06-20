@@ -77,6 +77,11 @@ function LandingPage({ startGame }) {
         if(keySoundRef.current && isAudioEnabled) {
             keySoundRef.current.play().catch((error) => {'error playing sound:', error});
         }
+        if (mode === 'ai') {
+            setPlayerO('AI'); // Ensure playerO is set for AI mode
+        } else {
+            setPlayerO(''); // Reset for PvP
+        }
     };
 
     const handleAiDifficultyChange = (difficulty) => {
@@ -178,10 +183,11 @@ function LandingPage({ startGame }) {
                 )}
 
                 <button 
+                    className="start-game-button"
                     onClick={handleStartGame} 
                     disabled={!isReady}
                 >
-                    Start Game
+                    Start Game{gameMode === 'ai' ? ` (${aiDifficulty.charAt(0).toUpperCase() + aiDifficulty.slice(1)})` : ''}
                 </button>
             </div>
         </div>
