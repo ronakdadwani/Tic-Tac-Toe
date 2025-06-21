@@ -4,7 +4,6 @@ body {
     font-family: 'Arial', sans-serif;
     background: url(../../Assets/img-h.png) no-repeat center center fixed;
     background-size: cover;
-    animation: moveBackground 10s linear infinite; /* Animation added here */
     color: #fff;
     overflow: hidden;
     position: relative; /* To position the pseudo-element correctly */
