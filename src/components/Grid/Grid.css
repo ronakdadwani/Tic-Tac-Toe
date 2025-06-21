@@ -191,6 +191,22 @@ button:hover {
     margin-left: 28rem;
     margin-top: -79px;
 }
+.rematch {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #f1c40f;
+    color: #2c3e50;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    transition: background-color 0.3s ease;
+}
+
+.rematch:hover {
+    background-color: #f39c12;
+}
 /* Additional styling for center alignment */
 .turn-highlight {
     font-family: 'Creepster', cursive; /* Horror-style font */

@@ -201,6 +201,7 @@ function Grid({ numberOfCards }) {
                                 onPlay={(i) => play(i, false)} // Human calls play with isAICall = false
                                 player={el}
                                 index={idx}
+                                isDraw={winner === "Draw"}
                             />
                         ))}
                     </div>
