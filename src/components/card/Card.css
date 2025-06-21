@@ -55,6 +55,10 @@
     animation: pulse 2s infinite, glow 1.5s ease-in-out infinite alternate;
 }
 
+.no-animation .icon {
+    animation: none;
+}
+
 /* Pulsating Effect */
 @keyframes pulse {
     0% {
