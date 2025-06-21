@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 // const clickSound = new Audio(clickSoundFile);    
 
 
-function Card({ gameEnd, player, onPlay, index }) {
+function Card({ gameEnd, player, onPlay, index, isDraw }) {
     let icon = <Icon />;
     if (player === 'X') {
         icon = <Icon name="cross" />;
@@ -49,7 +49,7 @@ function Card({ gameEnd, player, onPlay, index }) {
 
     // Determine card state for styling
     const isClickable = !gameEnd && player === '';
-    const cardClass = `card${isClickable ? ' card-clickable' : ''}${gameEnd && player === '' ? ' card-disabled' : ''}${player ? ' card-animated' : ''}`;
+    const cardClass = `card${isClickable ? ' card-clickable' : ''}${gameEnd && player === '' ? ' card-disabled' : ''}${player ? ' card-animated' : ''}${isDraw ? ' no-animation' : ''}`;
 
     return (
         <div
@@ -71,6 +71,7 @@ Card.propTypes = {
     player: PropTypes.string.isRequired,
     onPlay: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
+    isDraw: PropTypes.bool.isRequired,
 };
 
 export default Card;
