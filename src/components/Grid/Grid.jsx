@@ -49,11 +49,6 @@ function Grid({ numberOfCards }) {
             return;
         }
 
-        // Play click sound for both human and AI moves
-        const clickSound = clickSoundRef.current;
-        clickSound.currentTime = 0;
-        clickSound.play().catch((error) => { 'error playing sound:', error });
-
         // Prevent human from playing during AI's turn
         if (gameMode === 'ai' && isAITurn && !isAICall) {
             return;
@@ -64,6 +59,13 @@ function Grid({ numberOfCards }) {
         newBoard[index] = currentPlayer;
 
         const win = isWinner(newBoard, currentPlayer);
+        const isDraw = !win && newBoard.every((cell) => cell !== '');
+
+        if (!isDraw) {
+            const clickSound = clickSoundRef.current;
+            clickSound.currentTime = 0;
+            clickSound.play().catch((error) => { 'error playing sound:', error });
+        }
 
         if (win) {
             setWinner(turn ? playerO : playerX);
@@ -72,7 +74,7 @@ function Grid({ numberOfCards }) {
             } else {
                 setScoreX((prevScore) => prevScore + 1);
             }
-        } else if (newBoard.every((cell) => cell !== '')) {
+        } else if (isDraw) {
             setWinner("Draw");
         }
 
@@ -87,8 +89,11 @@ function Grid({ numberOfCards }) {
     // Handle AI moves
     useEffect(() => {
         if (gameMode === 'ai' && isAITurn && !winner) {
-            // Pass a copy of the board to avoid direct mutation within minimax
-            makeAIMove([...board], (moveIndex) => play(moveIndex, true), aiDifficulty); // Pass aiDifficulty
+            const aiMoveTimeout = setTimeout(() => {
+                makeAIMove([...board], (moveIndex) => play(moveIndex, true), aiDifficulty);
+            }, 800); // 0.8-second delay
+
+            return () => clearTimeout(aiMoveTimeout);
         }
     }, [isAITurn, board, gameMode, winner, play, aiDifficulty]);
 
