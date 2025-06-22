@@ -190,7 +190,7 @@ function Grid({ numberOfCards }) {
                     )}
                     {!winner && (
                         <h1 className="turn-highlight">
-                            Current Turn: <br />{turn ? playerO : playerX}
+                            {turn ? playerO : playerX ? `It is now ${turn ? playerO : playerX}'s turn!` : 'Waiting for player...'}
                         </h1>
                     )}
                     <div className="grid">
