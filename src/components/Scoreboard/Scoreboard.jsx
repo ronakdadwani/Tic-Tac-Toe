@@ -4,7 +4,10 @@ import '../Scoreboard/Scoreboard.css'
 function Scoreboard({playerX , playerO , scoreX , scoreO}) {
     return (
         <div className="scoreboard">
-            <h1 className="scoreboard-title">Game Score</h1>
+            <h1 className="scoreboard-title">
+                <span role="img" aria-label="skull" className="scoreboard-icon">💀</span>
+                Game Score
+            </h1>
             <div className="scoreboard-content">
                 <div className="player-score player-x">
                     <div className="player-info">
