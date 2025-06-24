@@ -10,14 +10,45 @@
   transition: background-image 1s ease-in-out;
 }
 
+.login-bg-carousel-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.login-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  transition: opacity 0.9s ease-in-out;
+  z-index: 1;
+}
+.login-bg-img.fade-in {
+  opacity: 1;
+  z-index: 2;
+}
+.login-bg-img.fade-out {
+  opacity: 0;
+  z-index: 1;
+}
+
 .login-bg-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(24, 17, 27, 0.85);
-  z-index: 1;
+  background: rgba(24, 17, 27, 0.55);
+  z-index: 3;
   pointer-events: none;
 }
 
