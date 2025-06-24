@@ -6,8 +6,6 @@ body {
     background-size: cover;
     color: #fff;
     min-height: 100vh;
-    min-width: 100vw;
-    overflow-x: hidden;
     position: relative; /* To position the pseudo-element correctly */
 }
 
@@ -118,7 +116,7 @@ input:focus {
 /* Grid Layout */
 .grid {
     display: flex;
-    height: calc(100vh - 150px); /* */
+    height: 450px;
     width: 500px;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -209,7 +207,7 @@ button:hover {
     border: none;
     cursor: pointer;
     display: block;
-    margin: 20px auto;
+    margin: 20px 0 20px auto;
     transition: background-color 0.3s ease;
 }
 
