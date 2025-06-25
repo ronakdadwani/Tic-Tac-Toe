@@ -3,6 +3,11 @@ import './LandingPage.css';
 import bgSoundFile from '../../Assets/sound1.mp3';
 import clickSoundFile from '../../Assets/sound2.mp3';
 
+const HORROR_IMAGES = [
+  'https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=1200&q=80', // creepy house
+  'https://images.unsplash.com/photo-1464655646192-3cb2ace7a67e?auto=format&fit=crop&w=1200&q=80', // dark graveyard
+];
+
 function LandingPage({ startGame }) {
     const [isReady, setIsReady] = useState(false);
     const [playerX, setPlayerX] = useState('');
@@ -14,6 +19,11 @@ function LandingPage({ startGame }) {
     const keySoundRef = useRef(new Audio(clickSoundFile));
     const [isAudioEnabled, setIsAudioEnabled] = useState(true);
     const [isMuted, setIsMuted] = useState(false);
+
+    // Carousel state
+    const [current, setCurrent] = useState(0);
+    const [next, setNext] = useState(1);
+    const [fade, setFade] = useState(false);
 
     useEffect(() => {
         setIsReady(true);
@@ -52,6 +62,19 @@ function LandingPage({ startGame }) {
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, [playerX, playerO, gameMode, aiDifficulty]);
+
+    // Horror carousel effect
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setFade(true);
+        setTimeout(() => {
+          setCurrent(next);
+          setNext((next + 1) % HORROR_IMAGES.length);
+          setFade(false);
+        }, 900);
+      }, 8000);
+      return () => clearInterval(interval);
+    }, [next]);
 
     const handleInputChange = (e, player) => {
         if (player === 'X') {
@@ -103,6 +126,16 @@ function LandingPage({ startGame }) {
     };
 
     return (
+      <div className="landing-bg-carousel-fade">
+        <div
+          className="landing-bg-img base"
+          style={{ backgroundImage: `url(${HORROR_IMAGES[current]})` }}
+        ></div>
+        <div
+          className={`landing-bg-img top${fade ? ' show' : ''}`}
+          style={{ backgroundImage: `url(${HORROR_IMAGES[next]})` }}
+        ></div>
+        <div className="landing-bg-overlay"></div>
         <div className="landing-page">
             <audio ref={audioRef} src={bgSoundFile} autoPlay loop></audio>
             <audio ref={keySoundRef} src={clickSoundFile}></audio>
@@ -191,6 +224,7 @@ function LandingPage({ startGame }) {
                 </button>
             </div>
         </div>
+      </div>
     );
 }
 
