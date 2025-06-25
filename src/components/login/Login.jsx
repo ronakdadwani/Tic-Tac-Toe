@@ -13,21 +13,21 @@ const IMAGE_URLS = [
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
-  const [bgIndex, setBgIndex] = useState(0);
-  const [prevBgIndex, setPrevBgIndex] = useState(0);
+  const [current, setCurrent] = useState(0);
+  const [next, setNext] = useState(1);
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevBgIndex(bgIndex);
       setFade(true);
       setTimeout(() => {
-        setBgIndex((prev) => (prev + 1) % IMAGE_COUNT);
+        setCurrent(next);
+        setNext((next + 1) % IMAGE_COUNT);
         setFade(false);
       }, 900); // fade duration
-    }, 3000);
+    }, 8000);
     return () => clearInterval(interval);
-  }, [bgIndex]);
+  }, [next]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,12 +49,12 @@ function Login({ onLogin }) {
   return (
     <div className="login-bg-carousel-fade">
       <div
-        className={`login-bg-img${fade ? ' fade-out' : ''}`}
-        style={{ backgroundImage: `url(${IMAGE_URLS[prevBgIndex]})` }}
+        className="login-bg-img base"
+        style={{ backgroundImage: `url(${IMAGE_URLS[current]})` }}
       ></div>
       <div
-        className={`login-bg-img${fade ? ' fade-in' : ''}`}
-        style={{ backgroundImage: `url(${IMAGE_URLS[bgIndex]})` }}
+        className={`login-bg-img top${fade ? ' show' : ''}`}
+        style={{ backgroundImage: `url(${IMAGE_URLS[next]})` }}
       ></div>
       <div className="login-bg-overlay"></div>
       <div className="login-container">
@@ -81,6 +81,7 @@ function Login({ onLogin }) {
         </form>
       </div>
     </div>
+    
   );
 }
 
