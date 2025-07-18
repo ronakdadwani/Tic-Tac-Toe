@@ -5,6 +5,8 @@ import isWinner from "../helpers/checkWinner";
 import LandingPage from "../landing-page/LandingPage";
 import Scoreboard from "../Scoreboard/Scoreboard";
 import { makeAIMove } from "../helpers/ai";
+// Add these imports for hint logic
+import { getRandomMove, getMediumMove, findBestMove } from "../helpers/ai";
 import clickSoundFile from "../../Assets/clicksound.mp3";
 
 function Grid({ numberOfCards }) {
@@ -21,6 +23,7 @@ function Grid({ numberOfCards }) {
     const [gameMode, setGameMode] = useState('pvp');
     const [isAITurn, setIsAITurn] = useState(false);
     const [aiDifficulty, setAiDifficulty] = useState('hard'); // New state for AI difficulty
+    const [hintMessage, setHintMessage] = useState(""); // State for hint message
     const clickSoundRef = useRef();
 
     if (!clickSoundRef.current) {
@@ -96,6 +99,30 @@ function Grid({ numberOfCards }) {
             return () => clearTimeout(aiMoveTimeout);
         }
     }, [isAITurn, board, gameMode, winner, play, aiDifficulty]);
+
+    // Function to get hint for the current player
+    const getHint = () => {
+        if (winner) return;
+        let move = -1;
+        // Only give hint for the current player (X or O)
+        // We'll use the AI logic for the current difficulty
+        if (aiDifficulty === "easy") {
+            move = getRandomMove(board);
+        } else if (aiDifficulty === "medium") {
+            move = getMediumMove(board);
+        } else {
+            move = findBestMove(board);
+        }
+        if (move !== -1) {
+            setHintMessage(`Hint: Try cell ${move + 1}`); // +1 for user-friendly index
+        } else {
+            setHintMessage("No moves available for a hint.");
+        }
+    };
+    // Clear hint after a move
+    useEffect(() => {
+        setHintMessage("");
+    }, [board]);
 
     // Start new game
     const startGame = (pX, pO, mode, difficulty) => {
@@ -192,6 +219,16 @@ function Grid({ numberOfCards }) {
                         <h1 className="turn-highlight">
                             {turn ? playerO : playerX ? `It is now ${turn ? playerO : playerX}'s turn!` : 'Waiting for player...'}
                         </h1>
+                    )}
+                    {gameStarted && !winner && (
+                        <button onClick={getHint} style={{ marginBottom: "1rem", padding: "8px 20px", fontSize: "18px", borderRadius: "8px", background: "#f1c40f", color: "#2c3e50", border: "none", cursor: "pointer" }}>
+                            Hint
+                        </button>
+                    )}
+                    {hintMessage && (
+                        <div style={{ marginBottom: "1rem", fontSize: "20px", color: "#f1c40f", fontWeight: "bold", textShadow: "0 0 8px #2c3e50" }}>
+                            {hintMessage}
+                        </div>
                     )}
                     <div className="grid">
                         {board.map((el, idx) => (
