@@ -6,7 +6,7 @@ import LandingPage from "../landing-page/LandingPage";
 import Scoreboard from "../Scoreboard/Scoreboard";
 import { makeAIMove } from "../helpers/ai";
 // Add these imports for hint logic
-import { getRandomMove, getMediumMove, findBestMove } from "../helpers/ai";
+import { getRandomMoveWithReason, getMediumMoveWithReason, findBestMoveWithReason } from "../helpers/ai";
 import clickSoundFile from "../../Assets/clicksound.mp3";
 
 function Grid({ numberOfCards }) {
@@ -103,18 +103,16 @@ function Grid({ numberOfCards }) {
     // Function to get hint for the current player
     const getHint = () => {
         if (winner) return;
-        let move = -1;
-        // Only give hint for the current player (X or O)
-        // We'll use the AI logic for the current difficulty
+        let moveObj = { move: -1, reason: '' };
         if (aiDifficulty === "easy") {
-            move = getRandomMove(board);
+            moveObj = getRandomMoveWithReason(board);
         } else if (aiDifficulty === "medium") {
-            move = getMediumMove(board);
+            moveObj = getMediumMoveWithReason(board);
         } else {
-            move = findBestMove(board);
+            moveObj = findBestMoveWithReason(board);
         }
-        if (move !== -1) {
-            setHintMessage(`Hint: Try cell ${move + 1}`); // +1 for user-friendly index
+        if (moveObj.move !== -1) {
+            setHintMessage(`Hint: Try cell ${moveObj.move + 1} (${moveObj.reason})`); // +1 for user-friendly index
         } else {
             setHintMessage("No moves available for a hint.");
         }
