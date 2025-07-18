@@ -64,9 +64,10 @@ const minimax = (board, depth, isMaximizing) => {
 };
 
 // Find the best move for the AI (Hard Difficulty - Minimax)
-const findBestMove = (board) => {
+const findBestMoveWithReason = (board) => {
     let bestScore = -Infinity;
     let bestMove = -1;
+    let reason = 'Best move by Minimax';
 
     // Try each empty cell
     for (let i = 0; i < 9; i++) {
@@ -74,7 +75,6 @@ const findBestMove = (board) => {
             board[i] = 'X';
             const score = minimax(board, 0, false);
             board[i] = '';
-            
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = i;
@@ -82,21 +82,22 @@ const findBestMove = (board) => {
         }
     }
 
-    return bestMove;
+    // Optionally, you can add more detailed reasoning here
+    return { move: bestMove, reason };
 };
 
 // Get a random valid move (Easy Difficulty)
-const getRandomMove = (board) => {
+const getRandomMoveWithReason = (board) => {
     const emptyCells = board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
     if (emptyCells.length > 0) {
         const randomIndex = Math.floor(Math.random() * emptyCells.length);
-        return emptyCells[randomIndex];
+        return { move: emptyCells[randomIndex], reason: 'Random move' };
     }
-    return -1; // No empty cells
+    return { move: -1, reason: 'No moves available' };
 };
 
 // Get a move for Medium Difficulty
-const getMediumMove = (board) => {
+const getMediumMoveWithReason = (board) => {
     const player = 'X'; // AI is always X
     const opponent = 'O';
     const emptyCells = board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
@@ -106,7 +107,7 @@ const getMediumMove = (board) => {
         const tempBoard = [...board];
         tempBoard[index] = player;
         if (checkWinner(tempBoard) === player) {
-            return index;
+            return { move: index, reason: 'Winning move' };
         }
     }
 
@@ -115,39 +116,46 @@ const getMediumMove = (board) => {
         const tempBoard = [...board];
         tempBoard[index] = opponent;
         if (checkWinner(tempBoard) === opponent) {
-            return index;
+            return { move: index, reason: 'Blocking opponent win' };
         }
     }
 
     // 3. Take the center if available
     if (board[4] === '') {
-        return 4;
+        return { move: 4, reason: 'Taking the center' };
     }
 
     // 4. Take a random corner if available
     const corners = [0, 2, 6, 8].filter(i => board[i] === '');
     if (corners.length > 0) {
         const randomIndex = Math.floor(Math.random() * corners.length);
-        return corners[randomIndex];
+        return { move: corners[randomIndex], reason: 'Taking a corner' };
     }
 
     // 5. Take any random available move
-    return getRandomMove(board);
+    return getRandomMoveWithReason(board);
 };
 
 // Make AI move with a slight delay to feel more natural
 const makeAIMove = (board, onPlay, aiDifficulty = 'hard') => {
     let move = -1;
+    let reason = '';
     switch (aiDifficulty) {
         case 'easy':
-            move = getRandomMove(board);
+            const easyMove = getRandomMoveWithReason(board);
+            move = easyMove.move;
+            reason = easyMove.reason;
             break;
         case 'medium':
-            move = getMediumMove(board);
+            const mediumMove = getMediumMoveWithReason(board);
+            move = mediumMove.move;
+            reason = mediumMove.reason;
             break;
         case 'hard':
         default:
-            move = findBestMove(board);
+            const hardMove = findBestMoveWithReason(board);
+            move = hardMove.move;
+            reason = hardMove.reason;
             break;
     }
 
@@ -158,4 +166,4 @@ const makeAIMove = (board, onPlay, aiDifficulty = 'hard') => {
     }
 };
 
-export { makeAIMove, checkWinner, isBoardFull }; 
+export { makeAIMove, checkWinner, isBoardFull, getRandomMoveWithReason, getMediumMoveWithReason, findBestMoveWithReason }; 
