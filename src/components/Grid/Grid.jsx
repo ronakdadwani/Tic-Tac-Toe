@@ -9,7 +9,7 @@ import { makeAIMove } from "../helpers/ai";
 import { getRandomMoveWithReason, getMediumMoveWithReason, findBestMoveWithReason } from "../helpers/ai";
 import clickSoundFile from "../../Assets/clicksound.mp3";
 
-function Grid({ numberOfCards }) {
+function yesGrid({ numberOfCards }) {
     const [board, setBoard] = useState(Array(numberOfCards).fill(""));
     const [turn, setTurn] = useState(false); // false => X, true => O
     const [winner, setWinner] = useState(null);
